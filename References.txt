@@ -1,0 +1,18 @@
+Scikit learn - Neural networks
+https://www.springboard.com/blog/beginners-guide-neural-network-in-python-scikit-learn-0-18/
+
+Scikitlearn linear regression
+http://bigdata-madesimple.com/how-to-run-linear-regression-in-python-scikit-learn/
+
+tensorflow linear regression
+https://medium.com/@saxenarohan97/intro-to-tensorflow-solving-a-simple-regression-problem-e87b42fd4845
+
+https://github.com/aymericdamien/TensorFlow-Examples/blob/master/examples/2_BasicModels/linear_regression.py
+https://stackoverflow.com/questions/28189408/how-to-reduce-the-verbosity-of-sparks-runtime-output
+https://www.youtube.com/watch?v=t63PS3kiTTQ
+https://spark.apache.org/docs/latest/quick-start.html
+
+
+https://databricks.com/product/getting-started-guide/machine-learning
+http://www.techpoweredmath.com/spark-dataframes-mllib-tutorial/#.WeDalmhSwuU
+https://stackoverflow.com/questions/31599400/spark-mllib-predicting-weird-number-or-nan

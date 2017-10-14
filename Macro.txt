@@ -1,0 +1,686 @@
+Sub data_exploration()
+Dim ws1 As Worksheet
+Dim n As Long, i As Long
+
+Set ws1 = Worksheets("housing dataset")
+n = Cells(Rows.Count, "A").End(xlUp).Row
+
+For i = 2 To n
+    If Cells(i, "C").Value = "A" Then
+            Cells(i, "C").Value = 0
+    ElseIf Cells(i, "C").Value = "C" Or Cells(i, "C").Value = "C (all)" Then
+            Cells(i, "C").Value = 1
+    ElseIf Cells(i, "C").Value = "FV" Then
+            Cells(i, "C").Value = 2
+    ElseIf Cells(i, "C").Value = "I" Then
+            Cells(i, "C").Value = 3
+    ElseIf Cells(i, "C").Value = "RH" Then
+            Cells(i, "C").Value = 4
+    ElseIf Cells(i, "C").Value = "RL" Then
+            Cells(i, "C").Value = 5
+    ElseIf Cells(i, "C").Value = "RP" Then
+            Cells(i, "C").Value = 6
+    ElseIf Cells(i, "C").Value = "RM" Then
+            Cells(i, "C").Value = 7
+    End If
+    
+    If Cells(i, "F").Value = "Grvl" Then
+            Cells(i, "F").Value = 1
+    ElseIf Cells(i, "F").Value = "Pave" Then
+            Cells(i, "F").Value = 2
+    ElseIf Cells(i, "F").Value = "NA" Then
+            Cells(i, "F").Value = 0
+    End If
+    
+    If Cells(i, "G").Value = "Grvl" Then
+            Cells(i, "G").Value = 1
+    ElseIf Cells(i, "G").Value = "Pave" Then
+            Cells(i, "G").Value = 2
+    ElseIf Cells(i, "G").Value = "NA" Then
+            Cells(i, "G").Value = 0
+    End If
+    
+    If Cells(i, "H").Value = "Reg" Then
+            Cells(i, "H").Value = 3
+    ElseIf Cells(i, "H").Value = "IR1" Then
+            Cells(i, "H").Value = 2
+    ElseIf Cells(i, "H").Value = "IR2" Then
+            Cells(i, "H").Value = 1
+    ElseIf Cells(i, "H").Value = "IR3" Then
+            Cells(i, "H").Value = 0
+    End If
+    
+    If Cells(i, "I").Value = "Lvl" Then
+            Cells(i, "I").Value = 3
+    ElseIf Cells(i, "I").Value = "Bnk" Then
+            Cells(i, "I").Value = 2
+    ElseIf Cells(i, "I").Value = "HLS" Then
+            Cells(i, "I").Value = 1
+    ElseIf Cells(i, "I").Value = "Low" Then
+            Cells(i, "I").Value = 0
+    End If
+    
+    If Cells(i, "J").Value = "AllPub" Then
+            Cells(i, "J").Value = 3
+    ElseIf Cells(i, "J").Value = "NoSewr" Then
+            Cells(i, "J").Value = 2
+    ElseIf Cells(i, "J").Value = "NoSeWa" Then
+            Cells(i, "J").Value = 1
+    ElseIf Cells(i, "J").Value = "ELO" Then
+            Cells(i, "J").Value = 0
+    End If
+    
+    If Cells(i, "K").Value = "Inside" Then
+            Cells(i, "K").Value = 3
+    ElseIf Cells(i, "K").Value = "Corner" Then
+            Cells(i, "K").Value = 2
+    ElseIf Cells(i, "K").Value = "CulDSac" Then
+            Cells(i, "K").Value = 1
+    ElseIf Cells(i, "K").Value = "FR2" Then
+            Cells(i, "K").Value = 4
+    ElseIf Cells(i, "K").Value = "FR3" Then
+            Cells(i, "K").Value = 0
+    End If
+    
+    If Cells(i, "L").Value = "Gtl" Then
+            Cells(i, "L").Value = 3
+    ElseIf Cells(i, "L").Value = "Mod" Then
+            Cells(i, "L").Value = 2
+    ElseIf Cells(i, "L").Value = "Sev" Then
+            Cells(i, "L").Value = 1
+    End If
+    
+    If Cells(i, "M").Value = "Blmngtn" Then
+            Cells(i, "M").Value = 0
+    ElseIf Cells(i, "M").Value = "Blueste" Then
+            Cells(i, "M").Value = 1
+    ElseIf Cells(i, "M").Value = "BrDale" Then
+            Cells(i, "M").Value = 2
+    ElseIf Cells(i, "M").Value = "BrkSide" Then
+            Cells(i, "M").Value = 3
+    ElseIf Cells(i, "M").Value = "ClearCr" Then
+            Cells(i, "M").Value = 4
+    ElseIf Cells(i, "M").Value = "CollgCr" Then
+            Cells(i, "M").Value = 5
+    ElseIf Cells(i, "M").Value = "Crawfor" Then
+            Cells(i, "M").Value = 6
+    ElseIf Cells(i, "M").Value = "Edwards" Then
+            Cells(i, "M").Value = 7
+    ElseIf Cells(i, "M").Value = "Gilbert" Then
+            Cells(i, "M").Value = 8
+    ElseIf Cells(i, "M").Value = "IDOTRR" Then
+            Cells(i, "M").Value = 9
+    ElseIf Cells(i, "M").Value = "MeadowV" Then
+            Cells(i, "M").Value = 10
+    ElseIf Cells(i, "M").Value = "Mitchel" Then
+            Cells(i, "M").Value = 11
+    ElseIf Cells(i, "M").Value = "Names" Or Cells(i, "M").Value = "NAmes" Then
+            Cells(i, "M").Value = 12
+    ElseIf Cells(i, "M").Value = "NoRidge" Then
+            Cells(i, "M").Value = 13
+    ElseIf Cells(i, "M").Value = "NPkVill" Then
+            Cells(i, "M").Value = 14
+    ElseIf Cells(i, "M").Value = "NridgHt" Then
+            Cells(i, "M").Value = 15
+    ElseIf Cells(i, "M").Value = "NWAmes" Then
+            Cells(i, "M").Value = 16
+    ElseIf Cells(i, "M").Value = "OldTown" Then
+            Cells(i, "M").Value = 17
+    ElseIf Cells(i, "M").Value = "SWISU" Then
+            Cells(i, "M").Value = 18
+    ElseIf Cells(i, "M").Value = "Sawyer" Then
+            Cells(i, "M").Value = 19
+    ElseIf Cells(i, "M").Value = "SawyerW" Then
+            Cells(i, "M").Value = 20
+    ElseIf Cells(i, "M").Value = "Somerst" Then
+            Cells(i, "M").Value = 21
+    ElseIf Cells(i, "M").Value = "StoneBr" Then
+            Cells(i, "M").Value = 22
+    ElseIf Cells(i, "M").Value = "Timber" Then
+            Cells(i, "M").Value = 23
+    ElseIf Cells(i, "M").Value = "Veenker" Then
+            Cells(i, "M").Value = 24
+    End If
+    
+    If Cells(i, "N").Value = "Artery" Then
+            Cells(i, "N").Value = 3
+    ElseIf Cells(i, "N").Value = "Feedr" Then
+            Cells(i, "N").Value = 2
+    ElseIf Cells(i, "N").Value = "Norm" Then
+            Cells(i, "N").Value = 1
+    ElseIf Cells(i, "N").Value = "RRNn" Then
+            Cells(i, "N").Value = 4
+    ElseIf Cells(i, "N").Value = "RRAn" Then
+            Cells(i, "N").Value = 5
+    ElseIf Cells(i, "N").Value = "PosN" Then
+            Cells(i, "N").Value = 6
+    ElseIf Cells(i, "N").Value = "PosA" Then
+            Cells(i, "N").Value = 7
+    ElseIf Cells(i, "N").Value = "RRNe" Then
+            Cells(i, "N").Value = 8
+    ElseIf Cells(i, "N").Value = "RRAe" Then
+            Cells(i, "N").Value = 9
+    End If
+    
+    If Cells(i, "O").Value = "Artery" Then
+            Cells(i, "O").Value = 3
+    ElseIf Cells(i, "O").Value = "Feedr" Then
+            Cells(i, "O").Value = 2
+    ElseIf Cells(i, "O").Value = "Norm" Then
+            Cells(i, "O").Value = 1
+    ElseIf Cells(i, "O").Value = "RRNn" Then
+            Cells(i, "O").Value = 4
+    ElseIf Cells(i, "O").Value = "RRAn" Then
+            Cells(i, "O").Value = 5
+    ElseIf Cells(i, "O").Value = "PosN" Then
+            Cells(i, "O").Value = 6
+    ElseIf Cells(i, "O").Value = "PosA" Then
+            Cells(i, "O").Value = 7
+    ElseIf Cells(i, "O").Value = "RRNe" Then
+            Cells(i, "O").Value = 8
+    ElseIf Cells(i, "O").Value = "RRAe" Then
+            Cells(i, "O").Value = 9
+    End If
+    
+    If Cells(i, "P").Value = "1Fam" Then
+            Cells(i, "P").Value = 3
+    ElseIf Cells(i, "P").Value = "2FmCon" Or Cells(i, "P").Value = "2fmCon" Then
+            Cells(i, "P").Value = 2
+    ElseIf Cells(i, "P").Value = "Duplx" Or Cells(i, "P").Value = "Duplex" Then
+            Cells(i, "P").Value = 1
+    ElseIf Cells(i, "P").Value = "TwnhsE" Then
+            Cells(i, "P").Value = 4
+    ElseIf Cells(i, "P").Value = "TwnhsI" Then
+            Cells(i, "P").Value = 5
+    Else
+            Cells(i, "P").Value = 0
+    End If
+    
+    If Cells(i, "Q").Value = "1Story" Then
+            Cells(i, "Q").Value = 3
+    ElseIf Cells(i, "Q").Value = "1.5Fin" Then
+            Cells(i, "Q").Value = 2
+    ElseIf Cells(i, "Q").Value = "1.5Unf" Then
+            Cells(i, "Q").Value = 1
+    ElseIf Cells(i, "Q").Value = "2Story" Then
+            Cells(i, "Q").Value = 4
+    ElseIf Cells(i, "Q").Value = "2.5Fin" Then
+            Cells(i, "Q").Value = 0
+    ElseIf Cells(i, "Q").Value = "2.5Unf" Then
+            Cells(i, "Q").Value = 5
+    ElseIf Cells(i, "Q").Value = "SFoyer" Then
+            Cells(i, "Q").Value = 6
+    ElseIf Cells(i, "Q").Value = "SLvl" Then
+            Cells(i, "Q").Value = 7
+    End If
+    
+    If Cells(i, "V").Value = "Flat" Then
+            Cells(i, "V").Value = 3
+    ElseIf Cells(i, "V").Value = "Gable" Then
+            Cells(i, "V").Value = 2
+    ElseIf Cells(i, "V").Value = "Gambrel" Then
+            Cells(i, "V").Value = 1
+    ElseIf Cells(i, "V").Value = "Hip Hip" Or Cells(i, "V").Value = "Hip" Then
+            Cells(i, "V").Value = 4
+    ElseIf Cells(i, "V").Value = "Mansard" Then
+            Cells(i, "V").Value = 5
+    ElseIf Cells(i, "V").Value = "Shed" Then
+            Cells(i, "V").Value = 6
+    End If
+    
+    If Cells(i, "W").Value = "ClyTile" Then
+            Cells(i, "W").Value = 3
+    ElseIf Cells(i, "W").Value = "CompShg" Then
+            Cells(i, "W").Value = 2
+    ElseIf Cells(i, "W").Value = "Membran" Then
+            Cells(i, "W").Value = 1
+    ElseIf Cells(i, "W").Value = "Metal" Then
+            Cells(i, "W").Value = 4
+    ElseIf Cells(i, "W").Value = "Roll" Then
+            Cells(i, "W").Value = 5
+    ElseIf Cells(i, "W").Value = "Tar&Grv" Then
+            Cells(i, "W").Value = 6
+    ElseIf Cells(i, "W").Value = "WdShake" Then
+            Cells(i, "W").Value = 7
+    ElseIf Cells(i, "W").Value = "WdShngl" Then
+            Cells(i, "W").Value = 8
+    End If
+    
+    If Cells(i, "X").Value = "AsbShng" Then
+            Cells(i, "X").Value = 0
+    ElseIf Cells(i, "X").Value = "AsphShn" Then
+            Cells(i, "X").Value = 1
+    ElseIf Cells(i, "X").Value = "BrkComm" Then
+            Cells(i, "X").Value = 2
+    ElseIf Cells(i, "X").Value = "BrkFace" Then
+            Cells(i, "X").Value = 3
+    ElseIf Cells(i, "X").Value = "CBlock" Then
+            Cells(i, "X").Value = 4
+    ElseIf Cells(i, "X").Value = "CemntBd" Then
+            Cells(i, "X").Value = 5
+    ElseIf Cells(i, "X").Value = "HdBoard" Then
+            Cells(i, "X").Value = 6
+    ElseIf Cells(i, "X").Value = "ImStucc" Then
+            Cells(i, "X").Value = 7
+    ElseIf Cells(i, "X").Value = "MetalSd" Then
+            Cells(i, "X").Value = 8
+    ElseIf Cells(i, "X").Value = "Other" Then
+            Cells(i, "X").Value = 9
+    ElseIf Cells(i, "X").Value = "Plywood" Then
+            Cells(i, "X").Value = 10
+    ElseIf Cells(i, "X").Value = "PreCast" Then
+            Cells(i, "X").Value = 11
+    ElseIf Cells(i, "X").Value = "Stone" Then
+            Cells(i, "X").Value = 12
+    ElseIf Cells(i, "X").Value = "Stucco" Then
+            Cells(i, "X").Value = 13
+    ElseIf Cells(i, "X").Value = "VinylSd" Then
+            Cells(i, "X").Value = 14
+    ElseIf Cells(i, "X").Value = "Wd Sdng" Then
+            Cells(i, "X").Value = 15
+    ElseIf Cells(i, "X").Value = "WdShing" Then
+            Cells(i, "X").Value = 16
+    End If
+    
+    If Cells(i, "Y").Value = "AsbShng" Then
+            Cells(i, "Y").Value = 0
+    ElseIf Cells(i, "Y").Value = "AsphShn" Then
+            Cells(i, "Y").Value = 1
+    ElseIf Cells(i, "Y").Value = "BrkComm" Or Cells(i, "Y").Value = "Brk Cmn" Then
+            Cells(i, "Y").Value = 2
+    ElseIf Cells(i, "Y").Value = "BrkFace" Then
+            Cells(i, "Y").Value = 3
+    ElseIf Cells(i, "Y").Value = "CBlock" Then
+            Cells(i, "Y").Value = 4
+    ElseIf Cells(i, "Y").Value = "CemntBd" Or Cells(i, "Y").Value = "CmentBd" Then
+            Cells(i, "Y").Value = 5
+    ElseIf Cells(i, "Y").Value = "HdBoard" Then
+            Cells(i, "Y").Value = 6
+    ElseIf Cells(i, "Y").Value = "ImStucc" Then
+            Cells(i, "Y").Value = 7
+    ElseIf Cells(i, "Y").Value = "MetalSd" Then
+            Cells(i, "Y").Value = 8
+    ElseIf Cells(i, "Y").Value = "Other" Then
+            Cells(i, "Y").Value = 9
+    ElseIf Cells(i, "Y").Value = "Plywood" Then
+            Cells(i, "Y").Value = 10
+    ElseIf Cells(i, "Y").Value = "PreCast" Then
+            Cells(i, "Y").Value = 11
+    ElseIf Cells(i, "Y").Value = "Stone" Then
+            Cells(i, "Y").Value = 12
+    ElseIf Cells(i, "Y").Value = "Stucco" Then
+            Cells(i, "Y").Value = 13
+    ElseIf Cells(i, "Y").Value = "VinylSd" Then
+            Cells(i, "Y").Value = 14
+    ElseIf Cells(i, "Y").Value = "Wd Sdng" Then
+            Cells(i, "Y").Value = 15
+    ElseIf Cells(i, "Y").Value = "WdShing" Or Cells(i, "Y").Value = "Wd Shng" Then
+            Cells(i, "Y").Value = 16
+    End If
+    
+    If Cells(i, "Z").Value = "BrkCmn" Then
+            Cells(i, "Z").Value = 4
+    ElseIf Cells(i, "Z").Value = "BrkFace" Then
+            Cells(i, "Z").Value = 3
+    ElseIf Cells(i, "Z").Value = "CBlock" Then
+            Cells(i, "Z").Value = 2
+    ElseIf Cells(i, "Z").Value = "Stone" Then
+            Cells(i, "Z").Value = 5
+    ElseIf Cells(i, "Z").Value = "None" Then
+            Cells(i, "Z").Value = 1
+    ElseIf Cells(i, "Z").Value = "NA" Then
+            Cells(i, "Z").Value = 0
+    End If
+    
+    If Cells(i, "AB").Value = "Fa" Then
+            Cells(i, "AB").Value = 1
+    ElseIf Cells(i, "AB").Value = "TA" Then
+            Cells(i, "AB").Value = 2
+    ElseIf Cells(i, "AB").Value = "Gd" Then
+            Cells(i, "AB").Value = 3
+    ElseIf Cells(i, "AB").Value = "Ex" Then
+            Cells(i, "AB").Value = 4
+    ElseIf Cells(i, "AB").Value = "Po" Then
+            Cells(i, "AB").Value = 0
+    End If
+    
+    If Cells(i, "AC").Value = "Fa" Then
+            Cells(i, "AC").Value = 1
+    ElseIf Cells(i, "AC").Value = "TA" Then
+            Cells(i, "AC").Value = 2
+    ElseIf Cells(i, "AC").Value = "Gd" Then
+            Cells(i, "AC").Value = 3
+    ElseIf Cells(i, "AC").Value = "Ex" Then
+            Cells(i, "AC").Value = 4
+    ElseIf Cells(i, "AC").Value = "Po" Then
+            Cells(i, "AC").Value = 0
+    End If
+    
+    If Cells(i, "AD").Value = "BrkTil" Then
+            Cells(i, "AD").Value = 1
+    ElseIf Cells(i, "AD").Value = "CBlock" Then
+            Cells(i, "AD").Value = 2
+    ElseIf Cells(i, "AD").Value = "PConc" Then
+            Cells(i, "AD").Value = 3
+    ElseIf Cells(i, "AD").Value = "Slab" Then
+            Cells(i, "AD").Value = 4
+    ElseIf Cells(i, "AD").Value = "Stone" Then
+            Cells(i, "AD").Value = 0
+    ElseIf Cells(i, "AD").Value = "Wood" Then
+            Cells(i, "AD").Value = 5
+    End If
+    
+    If Cells(i, "AE").Value = "Ex" Then
+            Cells(i, "AE").Value = 5
+    ElseIf Cells(i, "AE").Value = "Gd" Then
+            Cells(i, "AE").Value = 4
+    ElseIf Cells(i, "AE").Value = "TA" Then
+            Cells(i, "AE").Value = 3
+    ElseIf Cells(i, "AE").Value = "Fa" Then
+            Cells(i, "AE").Value = 2
+    ElseIf Cells(i, "AE").Value = "Po" Then
+            Cells(i, "AE").Value = 1
+    ElseIf Cells(i, "AE").Value = "NA" Then
+            Cells(i, "AE").Value = 0
+    End If
+    
+    If Cells(i, "AF").Value = "Ex" Then
+            Cells(i, "AF").Value = 5
+    ElseIf Cells(i, "AF").Value = "Gd" Then
+            Cells(i, "AF").Value = 4
+    ElseIf Cells(i, "AF").Value = "TA" Then
+            Cells(i, "AF").Value = 3
+    ElseIf Cells(i, "AF").Value = "Fa" Then
+            Cells(i, "AF").Value = 2
+    ElseIf Cells(i, "AF").Value = "Po" Then
+            Cells(i, "AF").Value = 1
+    ElseIf Cells(i, "AF").Value = "NA" Then
+            Cells(i, "AF").Value = 0
+    End If
+    
+    If Cells(i, "AG").Value = "Gd" Then
+            Cells(i, "AG").Value = 4
+    ElseIf Cells(i, "AG").Value = "Av" Then
+            Cells(i, "AG").Value = 3
+    ElseIf Cells(i, "AG").Value = "Mn" Then
+            Cells(i, "AG").Value = 2
+    ElseIf Cells(i, "AG").Value = "No" Then
+            Cells(i, "AG").Value = 1
+    ElseIf Cells(i, "AG").Value = "NA" Then
+            Cells(i, "AG").Value = 0
+    End If
+    
+    If Cells(i, "AH").Value = "GLQ" Then
+            Cells(i, "AH").Value = 6
+    ElseIf Cells(i, "AH").Value = "ALQ" Then
+            Cells(i, "AH").Value = 5
+    ElseIf Cells(i, "AH").Value = "BLQ" Then
+            Cells(i, "AH").Value = 4
+    ElseIf Cells(i, "AH").Value = "Rec" Then
+            Cells(i, "AH").Value = 3
+    ElseIf Cells(i, "AH").Value = "LwQ" Then
+            Cells(i, "AH").Value = 2
+    ElseIf Cells(i, "AH").Value = "Unf" Then
+            Cells(i, "AH").Value = 1
+    ElseIf Cells(i, "AH").Value = "NA" Then
+            Cells(i, "AH").Value = 0
+    End If
+    
+    If Cells(i, "AJ").Value = "GLQ" Then
+            Cells(i, "AJ").Value = 6
+    ElseIf Cells(i, "AJ").Value = "ALQ" Then
+            Cells(i, "AJ").Value = 5
+    ElseIf Cells(i, "AJ").Value = "BLQ" Then
+            Cells(i, "AJ").Value = 4
+    ElseIf Cells(i, "AJ").Value = "Rec" Then
+            Cells(i, "AJ").Value = 3
+    ElseIf Cells(i, "AJ").Value = "LwQ" Then
+            Cells(i, "AJ").Value = 2
+    ElseIf Cells(i, "AJ").Value = "Unf" Then
+            Cells(i, "AJ").Value = 1
+    ElseIf Cells(i, "AJ").Value = "NA" Then
+            Cells(i, "AJ").Value = 0
+    End If
+    
+    If Cells(i, "AN").Value = "Floor" Then
+            Cells(i, "AN").Value = 5
+    ElseIf Cells(i, "AN").Value = "GasA" Then
+            Cells(i, "AN").Value = 4
+    ElseIf Cells(i, "AN").Value = "GasW" Then
+            Cells(i, "AN").Value = 3
+    ElseIf Cells(i, "AN").Value = "Grav" Then
+            Cells(i, "AN").Value = 2
+    ElseIf Cells(i, "AN").Value = "OthW" Then
+            Cells(i, "AN").Value = 1
+    ElseIf Cells(i, "AN").Value = "Wall" Then
+            Cells(i, "AN").Value = 0
+    End If
+    
+    If Cells(i, "AO").Value = "Fa" Then
+            Cells(i, "AO").Value = 1
+    ElseIf Cells(i, "AO").Value = "TA" Then
+            Cells(i, "AO").Value = 2
+    ElseIf Cells(i, "AO").Value = "Gd" Then
+            Cells(i, "AO").Value = 3
+    ElseIf Cells(i, "AO").Value = "Ex" Then
+            Cells(i, "AO").Value = 4
+    ElseIf Cells(i, "AO").Value = "Po" Then
+            Cells(i, "AO").Value = 0
+    End If
+    
+    If Cells(i, "AP").Value = "Y" Then
+            Cells(i, "AP").Value = 1
+    ElseIf Cells(i, "AP").Value = "N" Then
+            Cells(i, "AP").Value = 0
+    End If
+    
+    If Cells(i, "AQ").Value = "SBrkr" Then
+            Cells(i, "AQ").Value = 2
+    ElseIf Cells(i, "AQ").Value = "FuseA" Then
+            Cells(i, "AQ").Value = 3
+    ElseIf Cells(i, "AQ").Value = "FuseF" Then
+            Cells(i, "AQ").Value = 4
+    ElseIf Cells(i, "AQ").Value = "FuseP" Then
+            Cells(i, "AQ").Value = 5
+    ElseIf Cells(i, "AQ").Value = "Mix" Then
+            Cells(i, "AQ").Value = 1
+    ElseIf Cells(i, "AQ").Value = "NA" Then
+            Cells(i, "AQ").Value = 0
+    End If
+    
+    If Cells(i, "BB").Value = "Fa" Then
+            Cells(i, "BB").Value = 1
+    ElseIf Cells(i, "BB").Value = "TA" Then
+            Cells(i, "BB").Value = 2
+    ElseIf Cells(i, "BB").Value = "Gd" Then
+            Cells(i, "BB").Value = 3
+    ElseIf Cells(i, "BB").Value = "Ex" Then
+            Cells(i, "BB").Value = 4
+    ElseIf Cells(i, "BB").Value = "Po" Then
+            Cells(i, "BB").Value = 0
+    End If
+    
+    If Cells(i, "BD").Value = "Typ" Then
+            Cells(i, "BD").Value = 7
+    ElseIf Cells(i, "BD").Value = "Min1" Then
+            Cells(i, "BD").Value = 6
+    ElseIf Cells(i, "BD").Value = "Min2" Then
+            Cells(i, "BD").Value = 5
+    ElseIf Cells(i, "BD").Value = "Mod" Then
+            Cells(i, "BD").Value = 4
+    ElseIf Cells(i, "BD").Value = "Maj1" Then
+            Cells(i, "BD").Value = 3
+    ElseIf Cells(i, "BD").Value = "Maj2" Then
+            Cells(i, "BD").Value = 2
+    ElseIf Cells(i, "BD").Value = "Sev" Then
+            Cells(i, "BD").Value = 1
+    ElseIf Cells(i, "BD").Value = "Sal" Then
+            Cells(i, "BD").Value = 0
+    End If
+    
+    If Cells(i, "BF").Value = "Fa" Then
+            Cells(i, "BF").Value = 2
+    ElseIf Cells(i, "BF").Value = "TA" Then
+            Cells(i, "BF").Value = 3
+    ElseIf Cells(i, "BF").Value = "Gd" Then
+            Cells(i, "BF").Value = 4
+    ElseIf Cells(i, "BF").Value = "Ex" Then
+            Cells(i, "BF").Value = 5
+    ElseIf Cells(i, "BF").Value = "NA" Then
+            Cells(i, "BF").Value = 0
+    ElseIf Cells(i, "BF").Value = "Po" Then
+            Cells(i, "BF").Value = 1
+    End If
+    
+    If Cells(i, "BG").Value = "2Types" Then
+            Cells(i, "BG").Value = 6
+    ElseIf Cells(i, "BG").Value = "Attchd" Then
+            Cells(i, "BG").Value = 5
+    ElseIf Cells(i, "BG").Value = "Basment" Then
+            Cells(i, "BG").Value = 4
+    ElseIf Cells(i, "BG").Value = "BuiltIn" Then
+            Cells(i, "BG").Value = 3
+    ElseIf Cells(i, "BG").Value = "CarPort" Then
+            Cells(i, "BG").Value = 2
+    ElseIf Cells(i, "BG").Value = "Detchd" Then
+            Cells(i, "BG").Value = 1
+    ElseIf Cells(i, "BG").Value = "NA" Then
+            Cells(i, "BG").Value = 0
+    End If
+    
+    If Cells(i, "BI").Value = "Unf" Then
+            Cells(i, "BI").Value = 1
+    ElseIf Cells(i, "BI").Value = "NA" Then
+            Cells(i, "BI").Value = 0
+    ElseIf Cells(i, "BI").Value = "RFn" Then
+            Cells(i, "BI").Value = 2
+    ElseIf Cells(i, "BI").Value = "Fin" Then
+            Cells(i, "BI").Value = 3
+    End If
+    
+    If Cells(i, "BL").Value = "Fa" Then
+            Cells(i, "BL").Value = 2
+    ElseIf Cells(i, "BL").Value = "TA" Then
+            Cells(i, "BL").Value = 3
+    ElseIf Cells(i, "BL").Value = "Gd" Then
+            Cells(i, "BL").Value = 4
+    ElseIf Cells(i, "BL").Value = "Ex" Then
+            Cells(i, "BL").Value = 5
+    ElseIf Cells(i, "BL").Value = "NA" Then
+            Cells(i, "BL").Value = 0
+    ElseIf Cells(i, "BL").Value = "Po" Then
+            Cells(i, "BL").Value = 1
+    End If
+    
+    If Cells(i, "BM").Value = "Fa" Then
+            Cells(i, "BM").Value = 2
+    ElseIf Cells(i, "BM").Value = "TA" Then
+            Cells(i, "BM").Value = 3
+    ElseIf Cells(i, "BM").Value = "Gd" Then
+            Cells(i, "BM").Value = 4
+    ElseIf Cells(i, "BM").Value = "Ex" Then
+            Cells(i, "BM").Value = 5
+    ElseIf Cells(i, "BM").Value = "NA" Then
+            Cells(i, "BM").Value = 0
+    ElseIf Cells(i, "BM").Value = "Po" Then
+            Cells(i, "BM").Value = 1
+    End If
+    
+    If Cells(i, "BN").Value = "P" Then
+            Cells(i, "BN").Value = 1
+    ElseIf Cells(i, "BN").Value = "N" Then
+            Cells(i, "BN").Value = 0
+    ElseIf Cells(i, "BN").Value = "Y" Then
+            Cells(i, "BN").Value = 2
+    End If
+    
+    If Cells(i, "BU").Value = "Fa" Then
+            Cells(i, "BU").Value = 1
+    ElseIf Cells(i, "BU").Value = "TA" Then
+            Cells(i, "BU").Value = 2
+    ElseIf Cells(i, "BU").Value = "Gd" Then
+            Cells(i, "BU").Value = 3
+    ElseIf Cells(i, "BU").Value = "Ex" Then
+            Cells(i, "BU").Value = 4
+    ElseIf Cells(i, "BU").Value = "NA" Then
+            Cells(i, "BU").Value = 0
+    End If
+    
+    If Cells(i, "BV").Value = "MnWw" Then
+            Cells(i, "BV").Value = 1
+    ElseIf Cells(i, "BV").Value = "GdWo" Then
+            Cells(i, "BV").Value = 2
+    ElseIf Cells(i, "BV").Value = "MnPrv" Then
+            Cells(i, "BV").Value = 3
+    ElseIf Cells(i, "BV").Value = "GdPrv" Then
+            Cells(i, "BV").Value = 4
+    ElseIf Cells(i, "BV").Value = "NA" Then
+            Cells(i, "BV").Value = 0
+    End If
+    
+    If Cells(i, "BW").Value = "TenC" Then
+            Cells(i, "BW").Value = 1
+    ElseIf Cells(i, "BW").Value = "Shed" Then
+            Cells(i, "BW").Value = 2
+    ElseIf Cells(i, "BW").Value = "Othr" Then
+            Cells(i, "BW").Value = 3
+    ElseIf Cells(i, "BW").Value = "Gar2" Then
+            Cells(i, "BW").Value = 4
+    ElseIf Cells(i, "BW").Value = "Elev" Then
+            Cells(i, "BW").Value = 5
+    ElseIf Cells(i, "BW").Value = "NA" Then
+            Cells(i, "BW").Value = 0
+    End If
+    
+    If Cells(i, "CA").Value = "ConLD" Then
+            Cells(i, "CA").Value = 1
+    ElseIf Cells(i, "CA").Value = "ConLI" Then
+            Cells(i, "CA").Value = 2
+    ElseIf Cells(i, "CA").Value = "ConLw" Then
+            Cells(i, "CA").Value = 3
+    ElseIf Cells(i, "CA").Value = "Con" Then
+            Cells(i, "CA").Value = 4
+    ElseIf Cells(i, "CA").Value = "Oth" Then
+            Cells(i, "CA").Value = 0
+    ElseIf Cells(i, "CA").Value = "COD" Then
+            Cells(i, "CA").Value = 5
+    ElseIf Cells(i, "CA").Value = "New" Then
+            Cells(i, "CA").Value = 6
+    ElseIf Cells(i, "CA").Value = "VWD" Then
+            Cells(i, "CA").Value = 7
+    ElseIf Cells(i, "CA").Value = "CWD" Then
+            Cells(i, "CA").Value = 8
+    ElseIf Cells(i, "CA").Value = "WD" Then
+            Cells(i, "CA").Value = 9
+    End If
+    
+    If Cells(i, "CB").Value = "Family" Then
+            Cells(i, "CB").Value = 2
+    ElseIf Cells(i, "CB").Value = "Alloca" Then
+            Cells(i, "CB").Value = 3
+    ElseIf Cells(i, "CB").Value = "AdjLand" Then
+            Cells(i, "CB").Value = 4
+    ElseIf Cells(i, "CB").Value = "Normal" Then
+            Cells(i, "CB").Value = 5
+    ElseIf Cells(i, "CB").Value = "Abnorml" Then
+            Cells(i, "CB").Value = 0
+    ElseIf Cells(i, "CB").Value = "Partial" Then
+            Cells(i, "CB").Value = 1
+    End If
+    
+    If Cells(i, "D").Value = "NA" Then
+            Cells(i, "D").Value = 0
+    End If
+    
+    If Cells(i, "BH").Value = "NA" Then
+            Cells(i, "BH").Value = 0
+    End If
+    
+    If Cells(i, "AA").Value = "NA" Then
+            Cells(i, "AA").Value = 0
+    End If
+    
+Next i
+
+
+End Sub
