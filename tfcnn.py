@@ -19,4 +19,7 @@ y=data['SalePrice']
 #print(y)
 #test git
 #test atom
+<<<<<<< HEAD
 #test atom once more
+=======
+>>>>>>> c6406de1209b1ebf108d7a5c34e9e83781ae1214
