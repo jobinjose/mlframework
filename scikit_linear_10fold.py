@@ -1,28 +1,23 @@
 import sklearn
 import csv
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.model_selection import KFold
-#with open('U:/Machine learning/Assignment/Task2/House Prices/housing dataset.csv', newline='') as csvfile:
-#	spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-#	for row in spamreader:
-#		print(', '.join(row))
+from dataProcessing import dataProcessing
+
 #Import the data
-data = pd.read_csv('test_dataset.csv')
+data = pd.read_csv('housing dataset.csv')
 #get the x by droping the dependent variable
-x=data.drop('SalePrice',axis = 1)
-#x=x.drop('SaleCondition',axis =1)
-#print(x)
-#print(data.head())
+x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle','SalePrice'],axis = 1)
+x=dataProcessing(x)    #dataprocessing
+
 #set the dependent variable which is saleprice
 y=data['SalePrice']
 
-#x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=.30)
-
 #linear regression object creation
-kf = KFold(len(x), n_folds=10)
+kf = KFold(n_splits=10)
+kf.get_n_splits(x)
 xval_err = 0
 
 linear_reg = linear_model.LinearRegression()

@@ -16,3 +16,8 @@ https://spark.apache.org/docs/latest/quick-start.html
 https://databricks.com/product/getting-started-guide/machine-learning
 http://www.techpoweredmath.com/spark-dataframes-mllib-tutorial/#.WeDalmhSwuU
 https://stackoverflow.com/questions/31599400/spark-mllib-predicting-weird-number-or-nan
+
+Tensorflow
+https://medium.com/towards-data-science/train-test-split-and-cross-validation-in-python-80b61beca4b6
+https://jasdeep06.github.io/posts/getting-started-with-tensorflow/
+http://web.stanford.edu/class/cs20si/lectures/notes_03.pdf

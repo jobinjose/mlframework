@@ -31,14 +31,14 @@ def dataProcessing(df):
     df = df.fillna({"GarageCond":"TA"})
     df = df.fillna({"MasVnrType":"None"})
     df = df.fillna(df.mean())
-    #print(x_objdf["Electrical"].value_counts()) 
+    #print(x_objdf["Electrical"].value_counts())
     #print(x_objdf.isnull().sum())
     #x_objdf = df.select_dtypes(include=['float64']).copy()
     #print(x_objdf.isnull().sum())
 
 
     # One hot encoding
-    #df = p.get_dummies(df) # if columns = None, then all the categorical columns will be encoded
+    df = p.get_dummies(df) # if columns = None, then all the categorical columns will be encoded
     #print(list(x_objdf))
     return df
 
