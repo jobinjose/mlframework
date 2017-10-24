@@ -32,13 +32,19 @@ if __name__=="__main__":
 
     # testing
     y_result = RFRegressor.predict(x_test)
+
+    #RMSE Calsulation
+    e=y_result - y_test
+    xval_err =np.dot(e,e)
+    rmse_10cv = np.sqrt(xval_err/len(x))
+    print("RMSE on 10 fold: %.2f" %rmse_10cv)
     #y_test['result'] = y_result
     #print(y_result)
 
     #print(y_test)
 
     #Calculating RMSE
-    RMSE = mean_squared_error(y_test,y_result)
+    #RMSE = mean_squared_error(y_test,y_result)
     #accuracy = accuracy_score(y_test,y_result)
-    print(RMSE)
+    #print(RMSE)
     #print(accuracy)

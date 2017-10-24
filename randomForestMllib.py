@@ -1,7 +1,6 @@
 import pandas as p
 import numpy as n
 import mllib
-#from sklearn.model_selection import train_test_split
 from pyspark.ml import Pipeline
 from pyspark.ml.regression import RandomForestRegressor
 from pyspark.ml.feature import VectorIndexer
@@ -23,7 +22,7 @@ if __name__=="__main__":
     sqlcontext=SQLContext(sc)
     x_new=sqlcontext.createDataFrame(data=x)
     # Saleprice is assined as target variable
-    #y=x['SalePrice'] 
+    #y=x['SalePrice']
     #x=x.drop(['SalePrice'],axis=1)
 
     # Splitting the dataset into training set(70%) and test set (30%)
@@ -41,13 +40,9 @@ if __name__=="__main__":
     test_data_transformed = assembler.transform(test_data)
     prediction = regression_model.transform(test_data_transformed)
     #print(prediction.head().prediction)
-    
+
     evaluator=RegressionEvaluator()
 
     evaluator = RegressionEvaluator(labelCol="SalePrice", predictionCol="prediction", metricName="rmse")
     rmse = evaluator.evaluate(prediction)
     print(rmse)
-    
-    
-
-

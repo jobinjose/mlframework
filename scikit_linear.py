@@ -1,21 +1,19 @@
 import sklearn
 import csv
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
-
-#parameters
-inputdataset = 'housing dataset.csv'
+from dataProcessing import dataProcessing
 
 #Import the data
-data = pd.read_csv(inputdataset)
+data = pd.read_csv('housing dataset.csv')
 #get the x by droping the dependent variable
-x=data.drop('SalePrice',axis = 1)
-#x=x.drop('SaleCondition',axis =1)
-#print(x)
-#print(data.head())
+x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle','SalePrice'],axis = 1)
+x=dataProcessing(x)    #dataprocessing
+
 #set the dependent variable which is saleprice
 y=data['SalePrice']
 
@@ -29,12 +27,15 @@ linear_reg.fit(x_train,y_train)
 
 # test set predictions
 y_pred = linear_reg.predict(x_test)
-
+e=y_pred - y_test
+xval_err =np.dot(e,e)
+rmse_10cv = np.sqrt(xval_err/len(x))
+print("RMSE: %.2f" %rmse_10cv)
 
 # Metrics
 #Coefficient
-print('Coefficients: \n', linear_reg.coef_)
+#print('Coefficients: \n', linear_reg.coef_)
 # The mean squared error
-print("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
+#print("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
 # Explained variance score: 1 is perfect prediction
-print('Variance score: %.2f' % r2_score(y_test, y_pred))
+#print('Variance score: %.2f' % r2_score(y_test, y_pred))

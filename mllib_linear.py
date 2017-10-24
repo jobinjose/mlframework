@@ -9,7 +9,6 @@ from pyspark.mllib.linalg import Vectors
 from pyspark.mllib.feature import StandardScaler
 from pyspark.mllib.evaluation import RegressionMetrics
 
-
 from pyspark import SparkContext, SparkConf
 
 conf = SparkConf().setAppName("LinearRegression").setMaster("local[8]")

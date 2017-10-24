@@ -20,12 +20,11 @@ y=data['SalePrice']
 kf = KFold(n_splits=10)
 kf.get_n_splits(x)
 xval_err = 0
-
 for train,test in kf.split(x):
     linear_reg = linear_model.LinearRegression()
-    linear_reg.fit(x[test],y[test])
-    y_pred = linear_reg.predict(x[test])
-    e=y_pred - y[test]
+    linear_reg.fit(x.iloc[train],y.iloc[train])
+    y_pred = linear_reg.predict(x.iloc[test])
+    e=y_pred - y.iloc[test]
     xval_err +=np.dot(e,e)
 #train the model
 
@@ -36,7 +35,7 @@ rmse_10cv = np.sqrt(xval_err/len(x))
 
 # Metrics
 #Coefficient
-print('Coefficients: \n', linear_reg.coef_)
+#print('Coefficients: \n', linear_reg.coef_)
 # The mean squared error
 #print("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
 # Explained variance score: 1 is perfect prediction

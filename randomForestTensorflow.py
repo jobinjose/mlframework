@@ -8,14 +8,16 @@ from randomForestScikitLearn import dataProcessing
 from sklearn.model_selection import train_test_split
 from tensorflow.contrib.learn.python.learn import metric_spec
 from tensorflow.contrib.tensor_forest.client import eval_metrics
+import os
 #from tf.metrics import mean_squared_error
-
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+tf.logging.set_verbosity(tf.logging.ERROR)
 
 #read data directly with tf
 '''
 datafile = tf.train.string_input_producer(["housing dataset.csv"])
 reader = tf.TextLineReader(skip_header_lines=1)
-key,value = reader.read(datafile) 
+key,value = reader.read(datafile)
 datacontent = tf.decode_csv(value)
 print(datacontent)
 '''
@@ -33,7 +35,7 @@ if __name__=="__main__":
     x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
     x=dataProcessing(x)
     # Saleprice is assined as target variable
-    y=x['SalePrice'] 
+    y=x['SalePrice']
     x=x.drop(['SalePrice'],axis=1)
 
     # Splitting the dataset into training set(70%) and test set (30%)
@@ -63,48 +65,47 @@ if __name__=="__main__":
     #x_train['SalePrice'] = y_train
     #print(x_train['SalePrice'])
     '''
-    
+
 
     #y_train = y_train.as_matrix;
 
-    
+
     #x_train=tf.cast(x_train,tf.float32)
-    
+
     '''
     x_train['LotFrontage']=n.float32(x_train['LotFrontage'])
     x_train['MasVnrArea']=n.float32(x_train['MasVnrArea'])
     x_train['GarageYrBlt']=n.float32(x_train['GarageYrBlt'])
-    
+
     x_train['LotFrontage']=x_train['LotFrontage'].astype('float32')
     x_train['MasVnrArea']=x_train['MasVnrArea'].astype('float32')
     x_train['GarageYrBlt']=x_train['GarageYrBlt'].astype('float32')
     '''
     #print(x_train.select_dtypes(include=['float64']))
-    
+
     #x_trin=p.DataFrame(x_train,dtype='float);
 
-    
+
 
     #x_train_tensor = tf.constant(x_train)
     #y_train_tensor = tf.constant(y_train)
 
-    
-    
-    
+
+
+
     #print(x_train.values)
     x_train=n.asarray(x_train.values.tolist())
     y_train=n.asarray(y_train.values.tolist())
     x_test=n.asarray(x_test.values.tolist())
     y_test=n.asarray(y_test.values.tolist())
-    
-    
+
+
     x_train=n.float32(x_train)
     y_train=n.float32(y_train)
     x_test=n.float32(x_test)
     y_test=n.float32(y_test)
+
     
-
-
     sess = tf.Session()
     #rint(sess.run(x_train_tensor))
     '''
@@ -135,11 +136,13 @@ if __name__=="__main__":
     #rmse
     #rmse = mean_squared_error(y_test,result)
     #print(rmse)
-    rmse = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test, result))))
-    #print(rmse)
+    rmse_tensor = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test, result['scores']))))
+    rmse = sess.run(rmse_tensor)
+
+    print("RMSE: ", rmse)
 
 
-    
+
     '''
     y_test = tf.constant(y_test)
     result = tf.constant(result)
@@ -147,4 +150,3 @@ if __name__=="__main__":
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
     print(sess.run(accuracy))
     '''
-

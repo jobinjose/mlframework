@@ -8,9 +8,10 @@ from randomForestScikitLearn import dataProcessing
 from sklearn.model_selection import KFold
 from tensorflow.contrib.learn.python.learn import metric_spec
 from tensorflow.contrib.tensor_forest.client import eval_metrics
+import os
 #from tf.metrics import mean_squared_error
-
-
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+tf.logging.set_verbosity(tf.logging.ERROR)
 #read data directly with tf
 
 if __name__=="__main__":
@@ -27,11 +28,14 @@ if __name__=="__main__":
     kf = KFold(n_splits=10)
     kf.get_n_splits(x)
     error = 0
+    i=0
     for train, test in kf.split(x):
-        x_train=n.asarray(x[train].values.tolist())
-        y_train=n.asarray(y[train].values.tolist())
-        x_test=n.asarray(x[test].values.tolist())
-        y_test=n.asarray(y[test].values.tolist())
+        i+=1
+        print("iteration No : ", i)
+        x_train=n.asarray(x.iloc[train].values.tolist())
+        y_train=n.asarray(y.iloc[train].values.tolist())
+        x_test=n.asarray(x.iloc[test].values.tolist())
+        y_test=n.asarray(y.iloc[test].values.tolist())
 
         x_train=n.float32(x_train)
         y_train=n.float32(y_train)
@@ -45,9 +49,12 @@ if __name__=="__main__":
         #regressor = random_forest.TensorForestEstimator(RForestParams)
         regressor.fit(x=x_train,y=y_train)
         result = regressor.predict(x_test)
+        result_array = result['scores']
+        #result_array=n.float32(result_array)
 
-        error += tf.square(tf.subtract(y_test, pred))
+        error += tf.square(tf.subtract(y_test, result_array))
 
-    rmse_10cv = n.sqrt(error/len(x))
+    rmse_tensor = tf.sqrt(tf.reduce_mean(error))
+    rmse = sess.run(rmse_tensor)
     #rmse = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test, result))))
-    print("RMSE : ", rmse_10cv)
+    print("RMSE : ", rmse)

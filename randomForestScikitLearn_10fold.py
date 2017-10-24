@@ -22,13 +22,17 @@ if __name__=="__main__":
     kf = KFold(n_splits=10)
     kf.get_n_splits(x)
     xval_err = 0
+
+    i=0
     # Random Forest Regression
     for train,test in kf.split(x):
+        i+=1
+        print("Iteration No : ", i)
         RFRegressor = RandomForestRegressor(n_estimators = 5000)
-        RFRegressor.fit(x[train],y[train])
+        RFRegressor.fit(x.iloc[train],y.iloc[train])
         # testing
-        y_result = RFRegressor.predict(x[test])
-        e=y_result - y[test]
+        y_result = RFRegressor.predict(x.iloc[test])
+        e=y_result - y.iloc[test]
         xval_err +=n.dot(e,e)
 
     #Calculating RMSE
