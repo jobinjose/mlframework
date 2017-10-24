@@ -1,15 +1,15 @@
 import pandas as p
 import sklearn
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
 from sklearn.ensemble import RandomForestRegressor
 from dataProcessing import dataProcessing
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import accuracy_score
+import numpy as n
 
 if __name__=="__main__":
     #import dataset
     houseData = p.read_csv("housing dataset.csv")
-    #print(houseData.head())
 
     #all the variables except SalePrice is taken as X variables
     x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
@@ -17,28 +17,23 @@ if __name__=="__main__":
     # Saleprice is assined as target variable
     y=x['SalePrice']
     x=x.drop(['SalePrice'],axis=1)
-    #print(list(x))
-    #print(y)
 
-    # Splitting the dataset into training set(70%) and test set (30%)
-    x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)
-    #print(x_train) #1022 rows
-    #print(x_test) #438 rows
-
+    # Splitting the dataset into 10 folds
+    kf = KFold(n_splits=10)
+    kf.get_n_splits(x)
+    xval_err = 0
     # Random Forest Regression
-    RFRegressor = RandomForestRegressor(n_estimators = 5000)
-    RFRegressor.fit(x_train,y_train)
-
-
-    # testing
-    y_result = RFRegressor.predict(x_test)
-    #y_test['result'] = y_result
-    #print(y_result)
-
-    #print(y_test)
+    for train,test in kf.split(x):
+        RFRegressor = RandomForestRegressor(n_estimators = 5000)
+        RFRegressor.fit(x[train],y[train])
+        # testing
+        y_result = RFRegressor.predict(x[test])
+        e=y_result - y[test]
+        xval_err +=n.dot(e,e)
 
     #Calculating RMSE
-    RMSE = mean_squared_error(y_test,y_result)
+    RMSE = n.sqrt(xval_err/len(x))
+    #RMSE = mean_squared_error(y_test,y_result)
     #accuracy = accuracy_score(y_test,y_result)
-    print(RMSE)
+    print("RMSE : " , RMSE)
     #print(accuracy)

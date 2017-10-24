@@ -1,6 +1,7 @@
 import sklearn
 import csv
 import pandas as pd
+import numpy as np
 from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.model_selection import KFold
@@ -20,10 +21,10 @@ kf = KFold(n_splits=10)
 kf.get_n_splits(x)
 xval_err = 0
 
-linear_reg = linear_model.LinearRegression()
-for train,test in kf:
+for train,test in kf.split(x):
+    linear_reg = linear_model.LinearRegression()
     linear_reg.fit(x[test],y[test])
-    y_pred = linear_reg.predict(x_test)
+    y_pred = linear_reg.predict(x[test])
     e=y_pred - y[test]
     xval_err +=np.dot(e,e)
 #train the model
