@@ -65,6 +65,7 @@ pred = tf.add(tf.multiply(X, W), b)
 
 # Mean squared error
 #cost = tf.reduce_mean(tf.square(y_train_array - pred))
+error = tf.subtract(y_test_array, pred)
 
 cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
 
@@ -91,7 +92,7 @@ for i in list(range(epochs)):
 	#if i % 10 == 0.:
 	for (x, y) in zip(x_train_array, y_train_array):
 		#print(x_train_array)
-		sess.run(optimizer, feed_dict={X: x_train_array, Y: y_train_array})
+		sess.run(optimizer, feed_dict={X: x, Y: y})
 
 
 #testing
@@ -103,8 +104,5 @@ for i in list(range(epochs)):
 #print("Testing cost=", testing_cost)
 #print("Absolute mean square loss difference:", abs(
 #    training_cost - testing_cost))
-rmse_tensor = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test_array, pred))))
-rmse = sess.run(rmse_tensor, feed_dict={X: x_train_array, Y: y_train_array})
-
-
+rmse = sess.run(tf.sqrt(tf.reduce_mean(tf.square(error))), feed_dict={X: x_test_array, Y: y_test_array})
 print("RMSE: ", rmse)
