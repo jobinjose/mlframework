@@ -17,7 +17,7 @@ import mllib
 from pyspark import SparkContext, SparkConf
 
 #import dataset
-houseData = p.read_csv("housing dataset.csv")
+houseData = pd.read_csv("housing dataset.csv")
 
 #all the variables except SalePrice is taken as X variables
 x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
@@ -42,8 +42,8 @@ linearRegressor = LinearRegression(labelCol="SalePrice", featuresCol="features",
 linearModel = linearRegressor.fit(train_data_transformed)
 
 test_data_transformed = assembler.transform(test_data)
-prediction = linearModel.transform(test_data_transformed))
-evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='label')
+prediction = linearModel.transform(test_data_transformed)
+evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='SalePrice')
 rmse = evaluator.evaluate(prediction, {evaluator.metricName: "rmse"})
 print("RMSE : ", rmse)
 
