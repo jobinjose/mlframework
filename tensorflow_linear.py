@@ -105,8 +105,8 @@ with tf.Session() as sess:
     #print("Testing cost=", testing_cost)
     #print("Absolute mean square loss difference:", abs(
     #    training_cost - testing_cost))
+    rmse_tensor = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test_array, pred))))
+    rmse = sess.run(rmse_tensor, feed_dict={X: x_train_array, Y: y_train_array})
 
-rmse_tensor = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test_array, pred))))
-rmse = tf.Session().run(rmse_tensor)
 
-print("RMSE: ", rmse)
+    print("RMSE: ", rmse)
