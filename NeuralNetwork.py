@@ -1,16 +1,19 @@
 import pandas as p
 import sklearn
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
 from DataProcessingTask1 import dataProcessing
+from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
-from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
 import numpy as np
 
 chunk_size = 100
 testsize = 0.30
+#number of hidden layers in th perceptron
+hiddenlayersizes = 30,30,30
+max_iter = 500
 
 if __name__=="__main__":
     #import dataset
@@ -30,17 +33,16 @@ if __name__=="__main__":
         # Splitting the dataset into training set(70%) and test set (30%)
         x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=testsize)
 
-        classifier = LogisticRegression()
-        classifier.fit(x_train,y_train)
-        y_pred = classifier.predict(x_test)
+        mlp_classifier = MLPClassifier(hidden_layer_sizes=(hiddenlayersizes),max_iter=max_iter)
+        mlp_classifier.fit(x_train,y_train)
+        #predictions
+        y_pred = mlp_classifier.predict(x_test)
         #print(y_pred)
-        #conf_matrix = confusion_matrix(y_test,y_pred)
-        #print(classifier.score(x_test,y_test))
-        #print(conf_matrix)
+        #print(confusion_matrix(y_test,y_pred))
         accuracy = accuracy_score(y_test,y_pred)
         print("Accuracy for chunk size ",chunk_size,":",accuracy*100,"%")
-        #print("Recall score: ",recall_score(y_test,y_pred))
-        print("Classification Report: \n", classification_report(y_test,y_pred))
+        #print("F1 score: ",f1_score(y_test,y_pred))
+        print("Classification Report: \n",classification_report(y_test,y_pred))
 
         if flag == 1:
             chunk_size=chunk_size*5
