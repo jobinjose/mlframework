@@ -47,9 +47,10 @@ crossval = CrossValidator(estimator=linearRegressor, estimatorParamMaps=paramGri
 
 crossValModel = crossval.fit(data_transformed)
 #linearModel = linearRegressor.fit(train_data_transformed)
-trainingSummary = crossValModel.bestModel.summary
+cvSummary = crossValModel.bestModel.summary
 #test_data_transformed = assembler.transform(test_data)
 #prediction = crossValModel.transform(test_data_transformed)
 #evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='SalePrice')
 #rmse = evaluator.evaluate(prediction, {evaluator.metricName: "rmse"})
-print("RMSE : ", trainingSummary)
+print("RMSE : ", cvSummary.rootMeanSquaredError)
+print("\nr2 : ", cvSummary.r2)

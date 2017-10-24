@@ -42,7 +42,7 @@ if __name__=="__main__":
     crossval = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=10)
 
     crossValModel = crossval.fit(data_transformed)
-    trainingSummary = crossValModel.bestModel.summary
+    cvSummary = crossValModel.bestModel.summary
 
 
     #test_data_transformed = assembler.transform(test_data)
@@ -51,4 +51,5 @@ if __name__=="__main__":
 
 
     #rmse = evaluator.evaluate(prediction, {evaluator.metricName: "rmse"})
-    print("metrics : ", trainingSummary)
+    print("metrics : ", cvSummary.rootMeanSquaredError)
+    print("\nr2 : ", cvSummary.r2))
