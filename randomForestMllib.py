@@ -41,8 +41,6 @@ if __name__=="__main__":
     prediction = regression_model.transform(test_data_transformed)
     #print(prediction.head().prediction)
 
-    evaluator=RegressionEvaluator()
-
     evaluator = RegressionEvaluator(labelCol="SalePrice", predictionCol="prediction", metricName="rmse")
     rmse = evaluator.evaluate(prediction)
     print(rmse)
