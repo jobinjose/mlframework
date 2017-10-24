@@ -10,6 +10,7 @@ rng = np.random
 learning_rate = 0.00000000005
 epochs = 50
 display_step = 1
+sess = tf.Session()
 #def calc(x, y):
 
  #   predictions = tf.add(b, tf.matmul(tf.cast(x, tf.float64), w))
@@ -83,30 +84,27 @@ optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 init = tf.global_variables_initializer()
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+sess.run(init)
 
-with tf.Session() as sess:
-
-    sess.run(init)
-
-    for i in list(range(epochs)):
-        #sess.run(optimizer)
-        #if i % 10 == 0.:
-        for (x, y) in zip(x_train_array, y_train_array):
-        	#print(x_train_array)
-        	sess.run(optimizer, feed_dict={X: x_train_array, Y: y_train_array})
+for i in list(range(epochs)):
+	#sess.run(optimizer)
+	#if i % 10 == 0.:
+	for (x, y) in zip(x_train_array, y_train_array):
+		#print(x_train_array)
+		sess.run(optimizer, feed_dict={X: x_train_array, Y: y_train_array})
 
 
-    #testing
+#testing
 
-    #print("Testing... (Mean square loss Comparison)")
-    #testing_cost = sess.run(
-    #    tf.reduce_sum(tf.pow(pred - Y, 2)) / (2 * x_test_array.shape[0]),
-    #    feed_dict={X: x_test_array, Y: y_test_array})  # same function as cost above
-    #print("Testing cost=", testing_cost)
-    #print("Absolute mean square loss difference:", abs(
-    #    training_cost - testing_cost))
-    rmse_tensor = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test_array, pred))))
-    rmse = sess.run(rmse_tensor, feed_dict={X: x_train_array, Y: y_train_array})
+#print("Testing... (Mean square loss Comparison)")
+#testing_cost = sess.run(
+#    tf.reduce_sum(tf.pow(pred - Y, 2)) / (2 * x_test_array.shape[0]),
+#    feed_dict={X: x_test_array, Y: y_test_array})  # same function as cost above
+#print("Testing cost=", testing_cost)
+#print("Absolute mean square loss difference:", abs(
+#    training_cost - testing_cost))
+rmse_tensor = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test_array, pred))))
+rmse = sess.run(rmse_tensor, feed_dict={X: x_train_array, Y: y_train_array})
 
 
-    print("RMSE: ", rmse)
+print("RMSE: ", rmse)

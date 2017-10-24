@@ -21,3 +21,8 @@ Tensorflow
 https://medium.com/towards-data-science/train-test-split-and-cross-validation-in-python-80b61beca4b6
 https://jasdeep06.github.io/posts/getting-started-with-tensorflow/
 http://web.stanford.edu/class/cs20si/lectures/notes_03.pdf
+
+MLLIB - linear regression
+https://mingchen0919.github.io/learning-apache-spark/linear-regression.html
+https://spark.apache.org/docs/2.1.0/ml-tuning.html
+https://mingchen0919.github.io/learning-apache-spark/k-folds-cross-validation.html

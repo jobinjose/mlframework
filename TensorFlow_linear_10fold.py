@@ -25,6 +25,13 @@ kf = KFold(n_splits=10)
 kf.get_n_splits(x_data)
 error = 0
 iter=0
+sess = tf.Session()
+X = tf.placeholder("float")
+Y = tf.placeholder("float")
+
+W = tf.Variable(rng.randn(), name="weight")
+b = tf.Variable(rng.randn(), name="bias")
+
 for train, test in kf.split(x_data):
     iter+=1
     print("Iteration No : ",iter)
@@ -66,16 +73,14 @@ for train, test in kf.split(x_data):
     init = tf.global_variables_initializer()
     optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
-    with tf.Session() as sess:
+    sess.run(init)
 
-        sess.run(init)
-
-        for i in list(range(epochs)):
-            #sess.run(optimizer)
-            #if i % 10 == 0.:
-            for (x, y) in zip(x_train_array, y_train_array):
-            	sess.run(optimizer, feed_dict={X: x_train_array, Y: y_train_array})
+    for i in list(range(epochs)):
+        #sess.run(optimizer)
+        #if i % 10 == 0.:
+        for (x, y) in zip(x_train_array, y_train_array):
+            sess.run(optimizer, feed_dict={X: x_train_array, Y: y_train_array})
 
 rmse_tensor = tf.sqrt(tf.reduce_mean(error))
-rmse = tf.Session().run(rmse_tensor)
+rmse = sess.run(rmse_tensor, feed_dict={X: x_train_array, Y: y_train_array})
 print("Root mean Squre Error : ", rmse)
