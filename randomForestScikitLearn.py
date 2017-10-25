@@ -8,6 +8,7 @@ from sklearn.metrics import r2_score
 from sklearn.metrics import accuracy_score
 import numpy as np
 
+no_of_trees = 5000
 if __name__=="__main__":
     #import dataset
     houseData = p.read_csv("housing dataset.csv")
@@ -28,7 +29,7 @@ if __name__=="__main__":
     #print(x_test) #438 rows
 
     # Random Forest Regression
-    RFRegressor = RandomForestRegressor(n_estimators = 5000)
+    RFRegressor = RandomForestRegressor(n_estimators = no_of_trees)
     RFRegressor.fit(x_train,y_train)
 
 

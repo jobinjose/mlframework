@@ -13,15 +13,7 @@ from pyspark.ml.feature import VectorAssembler
 from dataProcessing import dataProcessing
 from pyspark.ml.evaluation import RegressionEvaluator
 import mllib
-<<<<<<< HEAD
 from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
-=======
-<<<<<<< HEAD
-from pyspark.ml.tuning import ParamGridBuilder
-=======
-from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
->>>>>>> f9e214768ce2796f3be2d43238fb6fd145c38ea9
->>>>>>> 792a00f5e8deeac20141ffe466c20faa66c43018
 
 from pyspark import SparkContext, SparkConf
 
