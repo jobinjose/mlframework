@@ -4,10 +4,7 @@ import numpy as np
 
 from math import radians, cos, sin, asin, sqrt
 def haversine(lon1, lat1, lon2, lat2):
-    """
-    Calculate the great circle distance between two points
-    on the earth (specified in decimal degrees)
-    """
+    #Calculate haversine distance
     # convert decimal degrees to radians
     #print("llalalalalalala : ", [lon1, lat1, lon2, lat2])
     lon1, lat1, lon2, lat2 = map(radians, [lon1.astype(float), lat1.astype(float), lon2.astype(float), lat2.astype(float)])
