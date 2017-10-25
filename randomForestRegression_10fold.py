@@ -29,6 +29,7 @@ if __name__=="__main__":
         kf.get_n_splits(x)
         xval_err = 0
         R2 = []
+        RMSE = []
 
         i=0
         # Random Forest Regression
@@ -39,15 +40,16 @@ if __name__=="__main__":
             RFRegressor.fit(x.iloc[train],y.iloc[train])
             # testing
             y_result = RFRegressor.predict(x.iloc[test])
-            e=y_result - y.iloc[test]
-            xval_err +=n.dot(e,e)
+            #e=y_result - y.iloc[test]
+            #xval_err +=n.dot(e,e)
+            RMSE.append(n.sqrt(mean_squared_error(y.iloc[test],y_result)))
             R2.append(r2_score(y.iloc[test],y_result))
 
         #Calculating RMSE
-        RMSE = n.sqrt(xval_err/len(x))
+        #RMSE = n.sqrt(xval_err/len(x))
         #RMSE = mean_squared_error(y_test,y_result)
         #accuracy = accuracy_score(y_test,y_result)
-        print("RMSE on 10 fold for chunk size ",chunk_split_start_loop_size," : " , RMSE)
+        print("RMSE on 10 fold for chunk size ",chunk_split_start_loop_size," : " , sum(RMSE)/n_splits)
         print("R2 on 10 fold for chunk size ",chunk_split_start_loop_size," : " , sum(R2)/n_splits)
         #print(accuracy)
 

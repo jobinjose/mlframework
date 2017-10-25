@@ -7,7 +7,7 @@ from dataProcessing import dataProcessing
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
-learning_rate = 0.00001
+learning_rate = 0.00000000005
 epochs = 1000
 display_step = 50
 sess = tf.Session()

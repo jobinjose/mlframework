@@ -32,12 +32,13 @@ while chunk_split_start_loop_size <= data.shape[0]:
 
     # test set predictions
     y_pred = linear_reg.predict(x_test)
-    e=y_pred - y_test
-    xval_err =np.dot(e,e)
-    rmse_10cv = np.sqrt(xval_err/len(x))
+    #e=y_pred - y_test
+    #xval_err =np.dot(e,e)
+    #rmse_10cv = np.sqrt(xval_err/len(x))
+    RMSE = np.sqrt(mean_squared_error(y_test,y_pred))
     R2 = r2_score(y_test,y_pred)
-    print("RMSE for chunk size ",chunk_split_start_loop_size,": %.2f" %rmse_10cv)
-    print("R2 for chunk size ",chunk_split_start_loop_size,": %.2f" %R2)
+    print("RMSE for chunk size ",chunk_split_start_loop_size,": " RMSE)
+    print("R2 for chunk size ",chunk_split_start_loop_size,": " %R2)
 
     # Metrics
     #Coefficient

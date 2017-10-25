@@ -8,8 +8,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
 learning_rate = 0.00000000005
-epochs = 50
-display_step = 1
+epochs = 1000
+display_step = 50
 no_of_folds = 10
 sess = tf.Session()
 #def calc(x, y):

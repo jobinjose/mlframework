@@ -43,12 +43,13 @@ if __name__=="__main__":
         y_result = RFRegressor.predict(x_test)
 
         #RMSE Calsulation
-        e=y_result - y_test
-        xval_err =np.dot(e,e)
-        rmse_10cv = np.sqrt(xval_err/len(x))
+        #e=y_result - y_test
+        #xval_err =np.dot(e,e)
+        #rmse_10cv = np.sqrt(xval_err/len(x))
+        RMSE = np.sqrt(mean_squared_error(y_test,y_result))
         R2 = r2_score(y_test,y_result)
-        print("RMSE for chunk size ", chunk_split_start_loop_size,": %.2f" %rmse_10cv)
-        print("R2 for chunk size ", chunk_split_start_loop_size,": %.2f" %R2)
+        print("RMSE for chunk size ", chunk_split_start_loop_size,": " RMSE)
+        print("R2 for chunk size ", chunk_split_start_loop_size,": " R2)
         #y_test['result'] = y_result
         #print(y_result)
 
