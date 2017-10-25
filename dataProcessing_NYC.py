@@ -2,66 +2,51 @@ import pandas as p
 import sklearn
 import numpy as np
 
+from math import radians, cos, sin, asin, sqrt
+def haversine(lon1, lat1, lon2, lat2):
+    """
+    Calculate the great circle distance between two points
+    on the earth (specified in decimal degrees)
+    """
+    # convert decimal degrees to radians
+    #print("llalalalalalala : ", [lon1, lat1, lon2, lat2])
+    lon1, lat1, lon2, lat2 = map(radians, [lon1.astype(float), lat1.astype(float), lon2.astype(float), lat2.astype(float)])
+    # haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a))
+    # Radius of earth in kilometers is 6371
+    km = 6371* c
+    return km
 
 def dataProcessing(df):
-	#print(houseData.dtypes)
-    #x_objdf = x.select_dtypes(include=['float64']).copy()
-    # Check the missing values
-    #print(x_objdf.isnull().sum())
-    #print(x_objdf["Electrical"].value_counts())
-    #print(x_objdf["BsmtQual"].value_counts())
-    #print(x_objdf["BsmtCond"].value_counts())
-    #print(x_objdf["BsmtExposure"].value_counts())
-    #print(x_objdf["BsmtFinType1"].value_counts())
-    #print(x_objdf["BsmtFinType2"].value_counts())
-    #print(x_objdf["GarageType"].value_counts())
-    #print(x_objdf["GarageFinish"].value_counts())
-    #print(x_objdf["GarageQual"].value_counts())
-    #print(x_objdf["GarageCond"].value_counts())
-    #print(x_objdf["MasVnrType"].value_counts())
-    # Filling missing 'Electrical' with SBrkr which is the most number present
-    '''
-    df = df.fillna({"Electrical":"SBrkr"})
-    df = df.fillna({"BsmtQual":"TA"})
-    df = df.fillna({"BsmtCond":"TA"})
-    df = df.fillna({"BsmtExposure":"No"})
-    df = df.fillna({"BsmtFinType1":"Unf"})
-    df = df.fillna({"BsmtFinType2":"Unf"})
-    df = df.fillna({"GarageType":"Attchd"})
-    df = df.fillna({"GarageFinish":"Unf"})
-    df = df.fillna({"GarageQual":"TA"})
-    df = df.fillna({"GarageCond":"TA"})
-    df = df.fillna({"MasVnrType":"None"})
-    df = df.fillna(df.mean())
-    '''
+
     df['pickup_datetime'] = p.to_datetime(df['pickup_datetime'])
     df['pickup_datetime'] = (df['pickup_datetime'] - df['pickup_datetime'].min())  / np.timedelta64(1,'D')
     #print(df['pickup_datetime'])
 
     df['dropoff_datetime'] = p.to_datetime(df['dropoff_datetime'])
     df['dropoff_datetime'] = (df['dropoff_datetime'] - df['dropoff_datetime'].min())  / np.timedelta64(1,'D')
-    print(df['dropoff_datetime'])
-    #print(x_objdf["Electrical"].value_counts())
-    #print(x_objdf.isnull().sum())
-    #x_objdf = df.select_dtypes(include=['float64']).copy()
-    #print(x_objdf.isnull().sum())
+    #print(df['dropoff_datetime'])
+    harvesine_Dist = []
+    for lon1,lat1,lon2,lat2 in zip(df['pickup_longitude'], df['pickup_latitude'], df["dropoff_longitude"], df["dropoff_latitude"]):
+        #print("long iteration : ", lon1, " ",lat1, " ", lon2, " ",lat2)
+        harvesine_Dist.append(haversine(lon1, lat1, lon2, lat2))
+    df["HarvesineDist"] = harvesine_Dist
 
+    df['id'] = df['id'].str[3:]
 
     # One hot encoding
-    '''
-    df = p.get_dummies(df) # if columns = None, then all the categorical columns will be encoded
+    #df = df.drop(['pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude'],axis=1)
+    df['store_and_fwd_flag'] = p.get_dummies(df['store_and_fwd_flag']) # if columns = None, then all the categorical columns will be encoded
     #print(list(x_objdf))
-    '''
+
     return df
 
 
 if __name__=="__main__":
     #import dataset
     NYCdata = p.read_csv("New York City Taxi Trip Duration.csv")
-    #print(houseData.head())
-
-    # dropping the columns with most number of null values
-    #df=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu'],axis=1)
     df=NYCdata
     df_new=dataProcessing(df)
-    print(list(df_new))
