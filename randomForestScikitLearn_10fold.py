@@ -8,7 +8,7 @@ from sklearn.metrics import r2_score
 from sklearn.metrics import accuracy_score
 import numpy as n
 
-no_of_trees = 5000
+no_of_trees = 100
 if __name__=="__main__":
     #import dataset
     houseData = p.read_csv("housing dataset.csv")

@@ -12,6 +12,7 @@ from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
 
+no_of_trees = 100
 if __name__=="__main__":
 	#import dataset
     houseData = p.read_csv("housing dataset.csv")
@@ -35,10 +36,10 @@ if __name__=="__main__":
     assembler = VectorAssembler(inputCols=features,outputCol="features")
     data_transformed = assembler.transform(x_new)
 
-    regressor = RandomForestRegressor(featuresCol="features", labelCol="SalePrice", predictionCol="prediction",numTrees=100,maxDepth=10)
+    regressor = RandomForestRegressor(featuresCol="features", labelCol="SalePrice", predictionCol="prediction",numTrees=no_of_trees)
     evaluator = RegressionEvaluator(labelCol="SalePrice", predictionCol="prediction")
 
-    paramGrid = ParamGridBuilder().addGrid(regressor.regParam, [0.1, 0.01]).addGrid(regressor.elasticNetParam, [0, 1]).build()
+    paramGrid = ParamGridBuilder().build()
     crossval = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=10)
 
     crossValModel = crossval.fit(data_transformed)
@@ -52,4 +53,4 @@ if __name__=="__main__":
 
     #rmse = evaluator.evaluate(prediction, {evaluator.metricName: "rmse"})
     print("metrics : ", cvSummary.rootMeanSquaredError)
-    print("\nr2 : ", cvSummary.r2))
+    print("\nr2 : ", cvSummary.r2)

@@ -13,19 +13,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.logging.set_verbosity(tf.logging.ERROR)
 
-#read data directly with tf
-'''
-datafile = tf.train.string_input_producer(["housing dataset.csv"])
-reader = tf.TextLineReader(skip_header_lines=1)
-key,value = reader.read(datafile)
-datacontent = tf.decode_csv(value)
-print(datacontent)
-'''
-'''
-def get_input_fn(data_set, num_epochs=None, shuffle=False):
-	Features = list(data_set);
-	return tf.estimator.inputs.pandas_input_fn(x=p.DataFrame({i: data_set[i].values for i in Features}),y=p.Series(data_set['SalePrice'].values),num_epochs=num_epochs,shuffle=shuffle)
-'''
+no_of_trees = 10
 
 if __name__=="__main__":
     #import dataset
@@ -43,54 +31,9 @@ if __name__=="__main__":
     #print(x_train) #1022 rows
     #print(x_test) #438 rows
 
-
-
-    '''
-    # train data processing
-    x_train=dataProcessing(x_train)
-    x_test=dataProcessing(x_test)
-
-    x_train['label'] = "train"
-    x_test['label'] = "test"
-    # concatenated two datasets
-    x_concat = p.concat([x_train,x_test])
-    x_concatdummies = p.get_dummies(x_concat)
-    x_train = x_concatdummies[x_concatdummies['label_train'] == 1]
-    x_test = x_concatdummies[x_concatdummies['label_test'] == 1]
-
-    # Drop your labels
-    x_train = x_train.drop(['label_train','label_test'], axis=1)
-    x_test = x_test.drop(['label_train','label_test'], axis=1)
-    #print(y_train.head())
-    #x_train['SalePrice'] = y_train
-    #print(x_train['SalePrice'])
-    '''
-
-
     #y_train = y_train.as_matrix;
-
-
-    #x_train=tf.cast(x_train,tf.float32)
-
-    '''
-    x_train['LotFrontage']=n.float32(x_train['LotFrontage'])
-    x_train['MasVnrArea']=n.float32(x_train['MasVnrArea'])
-    x_train['GarageYrBlt']=n.float32(x_train['GarageYrBlt'])
-
-    x_train['LotFrontage']=x_train['LotFrontage'].astype('float32')
-    x_train['MasVnrArea']=x_train['MasVnrArea'].astype('float32')
-    x_train['GarageYrBlt']=x_train['GarageYrBlt'].astype('float32')
-    '''
-    #print(x_train.select_dtypes(include=['float64']))
-
-    #x_trin=p.DataFrame(x_train,dtype='float);
-
-
-
     #x_train_tensor = tf.constant(x_train)
     #y_train_tensor = tf.constant(y_train)
-
-
 
 
     #print(x_train.values)
@@ -107,31 +50,17 @@ if __name__=="__main__":
 
 
     sess = tf.Session()
-    #rint(sess.run(x_train_tensor))
-    '''
-    file = open("outputfile.txt","w")
-    sess.run(x_train_tensor).tofile(file,"","%s")
-    file.close()
-    '''
     #building an estimator
-    RForestParams=tensor_forest.ForestHParams(num_classes=1, num_features=1460, regression=True, num_trees=10, max_nodes=100)
+    #number_features = x_train.shape[0]
+    #print(number_features)
+    number_features = 1460
+    RForestParams=tensor_forest.ForestHParams(num_classes=1, num_features=number_features, regression=True, num_trees=no_of_trees,max_nodes=100)
     regressor = estimator.SKCompat(random_forest.TensorForestEstimator(RForestParams))
     #regressor = random_forest.TensorForestEstimator(RForestParams)
     regressor.fit(x=x_train,y=y_train)
 
     result = regressor.predict(x_test)
     #print(result)
-
-    '''
-    metric_name = 'accuracy'
-    metrics_cal = {metric_name:metric_spec.MetricSpec(eval_metrics.get_metric(metric_name),prediction_key=eval_metrics.get_prediction_key(metric_name))}
-    result = regressor.score(x=x_test,y=y_test[1],metrics=metrics_cal)
-    '''
-
-    #print(metrics_cal)
-    #for key in sorted(result):
-    	#print(key)
-    	#print('%s : %s' % (key,result[key]))
 
     #rmse
     #rmse = mean_squared_error(y_test,result)
@@ -147,13 +76,3 @@ if __name__=="__main__":
     unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test, result['scores'])))
     R2 = sess.run(tf.subtract(1.0, tf.divide(unexplained_error, total_error)))
     print("\nR2 : ",R2)
-
-
-
-    '''
-    y_test = tf.constant(y_test)
-    result = tf.constant(result)
-    correct_prediction = tf.equal(tf.argmax(result,1), tf.argmax(y_test,1))
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-    print(sess.run(accuracy))
-    '''

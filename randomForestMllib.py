@@ -11,6 +11,7 @@ from pyspark.context import SparkContext
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
 
+no_of_trees = 100
 if __name__=="__main__":
 	#import dataset
     houseData = p.read_csv("housing dataset.csv")
@@ -34,7 +35,7 @@ if __name__=="__main__":
     assembler = VectorAssembler(inputCols=features,outputCol="features")
     train_data_transformed = assembler.transform(train_data)
 
-    regressor = RandomForestRegressor(featuresCol="features", labelCol="SalePrice", predictionCol="prediction",numTrees=100,maxDepth=10)
+    regressor = RandomForestRegressor(featuresCol="features", labelCol="SalePrice", predictionCol="prediction",numTrees=no_of_trees)
     regression_model = regressor.fit(train_data_transformed)
 
     test_data_transformed = assembler.transform(test_data)

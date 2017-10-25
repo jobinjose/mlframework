@@ -14,6 +14,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.logging.set_verbosity(tf.logging.ERROR)
 #read data directly with tf
 
+no_of_trees = 10
+
 if __name__=="__main__":
     #import dataset
     houseData = p.read_csv("housing dataset.csv")
@@ -48,7 +50,8 @@ if __name__=="__main__":
 
         sess = tf.Session()
         #building an estimator
-        RForestParams=tensor_forest.ForestHParams(num_classes=1, num_features=1460, regression=True, num_trees=10, max_nodes=100)
+        number_features = 1460
+        RForestParams=tensor_forest.ForestHParams(num_classes=1, num_features=number_features, regression=True, num_trees=no_of_trees, max_nodes=100)
         regressor = estimator.SKCompat(random_forest.TensorForestEstimator(RForestParams))
         #regressor = random_forest.TensorForestEstimator(RForestParams)
         regressor.fit(x=x_train,y=y_train)
