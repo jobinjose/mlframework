@@ -105,7 +105,7 @@ if __name__=="__main__":
     x_test=n.float32(x_test)
     y_test=n.float32(y_test)
 
-    
+
     sess = tf.Session()
     #rint(sess.run(x_train_tensor))
     '''
@@ -140,6 +140,13 @@ if __name__=="__main__":
     rmse = sess.run(rmse_tensor)
 
     print("RMSE: ", rmse)
+
+	#R2
+    total_error = tf.reduce_sum(tf.square(tf.subtract(y_test, tf.reduce_mean(y_test))))
+
+    unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test, result['scores'])))
+    R2 = sess.run(tf.subtract(1.0, tf.divide(unexplained_error, total_error)))
+    print("\nR2 : ",R2)
 
 
 

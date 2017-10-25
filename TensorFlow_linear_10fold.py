@@ -32,6 +32,7 @@ kf = KFold(n_splits=no_of_folds)
 kf.get_n_splits(x_data)
 error = 0
 rmse = []
+r2 = []
 rmse_10fold = 0
 
 for train, test in kf.split(x_data):
@@ -62,8 +63,11 @@ for train, test in kf.split(x_data):
 
 
     pred = tf.add(tf.multiply(X, W), b)
-
+    #for RMSE
     error = tf.subtract(y_test_array, pred)
+    #for R2
+    total_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, tf.reduce_mean(y_test_array))))
+    unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, pred)))
 
     cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
 
@@ -84,5 +88,7 @@ for train, test in kf.split(x_data):
     		sess.run(optimizer, feed_dict={X: x, Y: y})
 
     rmse.append(sess.run(tf.sqrt(tf.reduce_mean(tf.square(error))), feed_dict={X: x_test_array, Y: y_test_array}))
+    r2.append(sess.run(tf.subtract(1.0, tf.divide(unexplained_error, total_error)), feed_dict={X: x_test_array, Y: y_test_array}))
 
 print("\nRMSE : ", sum(rmse)/no_of_folds)
+print("\nR2 : ",sum(r2)/no_of_folds)

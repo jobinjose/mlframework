@@ -25,10 +25,14 @@ if __name__=="__main__":
     y=x['SalePrice']
     x=x.drop(['SalePrice'],axis=1)
 
-    kf = KFold(n_splits=10)
+    no_of_folds = 10
+
+    kf = KFold(n_splits=no_of_folds)
     kf.get_n_splits(x)
     error = 0
     i=0
+    rmse = []
+    r2 = []
     for train, test in kf.split(x):
         i+=1
         print("iteration No : ", i)
@@ -52,9 +56,16 @@ if __name__=="__main__":
         result_array = result['scores']
         #result_array=n.float32(result_array)
 
-        error += tf.square(tf.subtract(y_test, result_array))
+        error = tf.square(tf.subtract(y_test, result_array))
+        rmse_tensor = tf.sqrt(tf.reduce_mean(error))
+        rmse.append(sess.run(rmse_tensor))
 
-    rmse_tensor = tf.sqrt(tf.reduce_mean(error))
-    rmse = sess.run(rmse_tensor)
+        total_error = tf.reduce_sum(tf.square(tf.subtract(y_test, tf.reduce_mean(y_test))))
+        unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test, result_array)))
+        r2.append(sess.run(tf.subtract(1.0, tf.divide(unexplained_error, total_error))))
+
+
+
     #rmse = tf.sqrt(tf.reduce_mean(tf.square(tf.subtract(y_test, result))))
-    print("RMSE : ", rmse)
+    print("RMSE : ", sum(rmse)/no_of_folds)
+    print("\nR2 : ",sum(r2)/no_of_folds)

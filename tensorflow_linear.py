@@ -7,9 +7,9 @@ from dataProcessing import dataProcessing
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
-learning_rate = 0.00000000005
-epochs = 50
-display_step = 1
+learning_rate = 0.00001
+epochs = 1000
+display_step = 50
 sess = tf.Session()
 #def calc(x, y):
 
@@ -65,7 +65,13 @@ pred = tf.add(tf.multiply(X, W), b)
 
 # Mean squared error
 #cost = tf.reduce_mean(tf.square(y_train_array - pred))
+#for RMSE
 error = tf.subtract(y_test_array, pred)
+
+#for r2
+total_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, tf.reduce_mean(y_test_array))))
+
+unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, pred)))
 
 cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
 
@@ -106,3 +112,10 @@ for i in list(range(epochs)):
 #    training_cost - testing_cost))
 rmse = sess.run(tf.sqrt(tf.reduce_mean(tf.square(error))), feed_dict={X: x_test_array, Y: y_test_array})
 print("RMSE: ", rmse)
+
+#total_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, tf.reduce_mean(y_test_array))))
+
+#unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, pred)))
+
+R2 = sess.run(tf.subtract(1.0, tf.divide(unexplained_error, total_error)), feed_dict={X: x_test_array, Y: y_test_array})
+print("\nR2 : ",R2)
