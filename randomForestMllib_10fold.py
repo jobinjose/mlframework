@@ -10,7 +10,11 @@ from pyspark.sql import SQLContext
 from pyspark.context import SparkContext
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
+<<<<<<< HEAD
 from pyspark.ml.tuning import ParamGridBuilder
+=======
+from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
+>>>>>>> f9e214768ce2796f3be2d43238fb6fd145c38ea9
 
 if __name__=="__main__":
 	#import dataset
