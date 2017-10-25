@@ -6,7 +6,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.model_selection import KFold
 from dataProcessing import dataProcessing
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, mean_squared_error
 
 n_splits = 10
 
@@ -52,8 +52,8 @@ while chunk_split_start_loop_size <= data.shape[0]:
     # Explained variance score: 1 is perfect prediction
     #print('Variance score: %.2f' % r2_score(y_test, y_pred))
 
-    print("RMSE on 10 fold for chunk size ",chunk_split_start_loop_size,": " sum(RMSE)/n_splits)
-    print("R2 on 10 fold for chunk size ",chunk_split_start_loop_size,": " sum(R2)/n_splits)
+    print("RMSE on 10 fold for chunk size ",chunk_split_start_loop_size,": ", sum(RMSE)/n_splits)
+    print("R2 on 10 fold for chunk size ",chunk_split_start_loop_size,": ", sum(R2)/n_splits)
 
     if flag == 1:
         chunk_split_start_loop_size=chunk_split_start_loop_size*5

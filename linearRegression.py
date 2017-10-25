@@ -7,7 +7,6 @@ from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 from dataProcessing import dataProcessing
-from sklearn.metrics import r2_score
 
 testsize = .30
 #Import the data
@@ -37,8 +36,8 @@ while chunk_split_start_loop_size <= data.shape[0]:
     #rmse_10cv = np.sqrt(xval_err/len(x))
     RMSE = np.sqrt(mean_squared_error(y_test,y_pred))
     R2 = r2_score(y_test,y_pred)
-    print("RMSE for chunk size ",chunk_split_start_loop_size,": " RMSE)
-    print("R2 for chunk size ",chunk_split_start_loop_size,": " %R2)
+    print("RMSE for chunk size ",chunk_split_start_loop_size,": ", RMSE)
+    print("R2 for chunk size ",chunk_split_start_loop_size,": ", R2)
 
     # Metrics
     #Coefficient

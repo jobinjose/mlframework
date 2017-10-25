@@ -48,8 +48,8 @@ if __name__=="__main__":
         #rmse_10cv = np.sqrt(xval_err/len(x))
         RMSE = np.sqrt(mean_squared_error(y_test,y_result))
         R2 = r2_score(y_test,y_result)
-        print("RMSE for chunk size ", chunk_split_start_loop_size,": " RMSE)
-        print("R2 for chunk size ", chunk_split_start_loop_size,": " R2)
+        print("RMSE for chunk size ", chunk_split_start_loop_size,": ", RMSE)
+        print("R2 for chunk size ", chunk_split_start_loop_size,": ", R2)
         #y_test['result'] = y_result
         #print(y_result)
 
