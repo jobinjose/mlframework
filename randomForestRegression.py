@@ -9,7 +9,7 @@ import numpy as np
 from sklearn.metrics import r2_score
 
 testsize = 0.30
-no_of_trees = 5000
+no_of_trees = 10
 
 if __name__=="__main__":
     #import dataset

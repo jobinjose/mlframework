@@ -2,7 +2,7 @@ import pandas as p
 import sklearn
 from sklearn.model_selection import KFold
 from sklearn.ensemble import RandomForestRegressor
-from dataProcessing import dataProcessing
+from dataProcessing_sum import dataProcessing_sum_without_noise
 from sklearn.metrics import mean_squared_error
 #from sklearn.metrics import accuracy_score
 import numpy as n
@@ -12,18 +12,18 @@ n_splits = 10
 no_of_trees = 10
 if __name__=="__main__":
     #import dataset
-    houseData = p.read_csv("housing dataset.csv")
+    dataset = p.read_csv("The SUM dataset, without noise.csv",delimiter=";")
 
     #all the variables except SalePrice is taken as X variables
-    data=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
-    data=dataProcessing(data)    #dataprocessing
+    dataset=dataset.drop(['Target Class'],axis=1)
+    data=dataProcessing_sum_without_noise(dataset)    #dataprocessing
     chunk_split_start_loop_size = 100
     flag=1
     while chunk_split_start_loop_size <= data.shape[0]:
         x=data.head(chunk_split_start_loop_size)
         # Saleprice is assined as target variable
-        y=x['SalePrice']
-        x=x.drop(['SalePrice'],axis=1)
+        y=x['Target']
+        x=x.drop(['Target'],axis=1)
         # Splitting the dataset into 10 folds
         kf = KFold(n_splits=n_splits)
         kf.get_n_splits(x)
