@@ -2,7 +2,6 @@ import tensorflow as tf
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np
-from matplotlib import pyplot as plt
 import os
 from dataProcessing import dataProcessing
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
@@ -53,8 +52,8 @@ n_samples = x_train_array.shape[0]
 n_input = x_train_array.shape[1] # number of features
 n_classes = 1 # one target
 
-print("rows: ",n_samples)
-print("colums : ", x_train_array.shape[1])
+#print("rows: ",n_samples)
+#print("colums : ", x_train_array.shape[1])
 # tf Graph Input
 X = tf.placeholder("float")
 Y = tf.placeholder("float")
