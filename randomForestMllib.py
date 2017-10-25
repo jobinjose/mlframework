@@ -11,7 +11,7 @@ from pyspark.context import SparkContext
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
 
-no_of_trees = 100
+no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
     houseData = p.read_csv("housing dataset.csv")

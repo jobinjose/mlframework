@@ -12,7 +12,7 @@ from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
 
-no_of_trees = 100
+no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
     houseData = p.read_csv("housing dataset.csv")
@@ -37,13 +37,21 @@ if __name__=="__main__":
     data_transformed = assembler.transform(x_new)
 
     regressor = RandomForestRegressor(featuresCol="features", labelCol="SalePrice", predictionCol="prediction",numTrees=no_of_trees)
-    evaluator = RegressionEvaluator(labelCol="SalePrice", predictionCol="prediction")
+    evaluator_rmse = RegressionEvaluator(labelCol="SalePrice", predictionCol="prediction",metricName="rmse")
+    evaluator_r2 = RegressionEvaluator(labelCol="SalePrice", predictionCol="prediction",metricName="r2")
 
     paramGrid = ParamGridBuilder().build()
-    crossval = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=10)
+    crossval = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator_rmse, numFolds=10)
+    crossval_r2 = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator_r2, numFolds=10)
 
     crossValModel = crossval.fit(data_transformed)
-    cvSummary = crossValModel.bestModel.summary
+    #cvSummary = crossValModel.getParam()
+    #cvSummary = crossValModel.bestModel.summary
+    RMSE = crossValModel.avgMetrics[0]
+    #cvSummary1 = crossValModel.avgMetrics[1]
+    crossValModel = crossval_r2.fit(data_transformed)
+    R2 = crossValModel.avgMetrics[0]
+    #print(cvSummary1)
 
 
     #test_data_transformed = assembler.transform(test_data)
@@ -52,5 +60,5 @@ if __name__=="__main__":
 
 
     #rmse = evaluator.evaluate(prediction, {evaluator.metricName: "rmse"})
-    print("metrics : ", cvSummary.rootMeanSquaredError)
-    print("\nr2 : ", cvSummary.r2)
+    print("RMSE : ", RMSE)
+    print("\nr2 : ", R2)
