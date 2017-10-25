@@ -2,3 +2,23 @@ C:\Users\HP\Documents\GitHub\mlframework>python scikit_linear_dataset2_10fold.py
 RMSE :  4532.56706173
 
 R2 :  0.0195988294159
+
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python NeuralNetwork_10fold_sum
+_with_noise.py
+Accuracy for chunk size  100 : 52.0 %
+Cohen kappa score for chunk size  100 :  0.014479638009
+Accuracy for chunk size  500 : 66.0 %
+Cohen kappa score for chunk size  500 :  0.249681743294
+Accuracy for chunk size  1000 : 61.7 %
+Cohen kappa score for chunk size  1000 :  0.364477624366
+Accuracy for chunk size  5000 : 86.96 %
+Cohen kappa score for chunk size  5000 :  0.602900518552
+Accuracy for chunk size  10000 : 88.42 %
+Cohen kappa score for chunk size  10000 :  0.630463869001
+Accuracy for chunk size  50000 : 90.422 %
+Cohen kappa score for chunk size  50000 :  0.685129180284
+Accuracy for chunk size  100000 : 91.302 %
+Cohen kappa score for chunk size  100000 :  0.727396616338
+Accuracy for chunk size  500000 : 85.9462 %
+Cohen kappa score for chunk size  500000 :  0.361507173442
