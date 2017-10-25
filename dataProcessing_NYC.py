@@ -17,7 +17,10 @@ def haversine(lon1, lat1, lon2, lat2):
     km = 6371* c
     return km
 
-def dataProcessing(df):
+def dataProcessing_NYC(df):
+
+    missing_col_list = df.columns[df.isnull().any()].tolist()
+    #print("missing_col_list : ", missing_col_list)  No missing data for this dataset
 
     df['pickup_datetime'] = p.to_datetime(df['pickup_datetime'])
     df['pickup_datetime'] = (df['pickup_datetime'] - df['pickup_datetime'].min())  / np.timedelta64(1,'D')
@@ -46,4 +49,4 @@ if __name__=="__main__":
     #import dataset
     NYCdata = p.read_csv("New York City Taxi Trip Duration.csv")
     df=NYCdata
-    df_new=dataProcessing(df)
+    df_new=dataProcessing_NYC(df)
