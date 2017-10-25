@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.model_selection import KFold
+from sklearn.metrics import mean_squared_error, r2_score
 from dataProcessing import dataProcessing
 
 #Import the data
@@ -17,23 +18,30 @@ x=dataProcessing(x)    #dataprocessing
 y=data['SalePrice']
 
 #linear regression object creation
-kf = KFold(n_splits=10)
+no_of_folds = 10
+kf = KFold(n_splits=no_of_folds)
 kf.get_n_splits(x)
 xval_err = 0
+RMSE = []
+R2 = []
 for train,test in kf.split(x):
     linear_reg = linear_model.LinearRegression()
     linear_reg.fit(x.iloc[train],y.iloc[train])
     y_pred = linear_reg.predict(x.iloc[test])
-    e=y_pred - y.iloc[test]
-    xval_err +=np.dot(e,e)
+    #e=y_pred - y.iloc[test]
+    #xval_err +=np.dot(e,e)
+    RMSE.append(np.sqrt(mean_squared_error(y.iloc[test],y_pred)))
+    R2.append(r2_score(y.iloc[test],y_pred))
 #train the model
 
 
 # test set predictions
 
-rmse_10cv = np.sqrt(xval_err/len(x))
+#rmse_10cv = np.sqrt(xval_err/len(x))
 
 # Metrics
+print("RMSE : " , sum(RMSE)/no_of_folds)
+print("\nR2 : ", sum(R2)/no_of_folds)
 #Coefficient
 #print('Coefficients: \n', linear_reg.coef_)
 # The mean squared error
@@ -41,4 +49,4 @@ rmse_10cv = np.sqrt(xval_err/len(x))
 # Explained variance score: 1 is perfect prediction
 #print('Variance score: %.2f' % r2_score(y_test, y_pred))
 
-print("RMSE on 10 fold: %.2f" %rmse_10cv)
+#print("RMSE on 10 fold: %.2f" %rmse_10cv)

@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from dataProcessing import dataProcessing
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
 from sklearn.metrics import accuracy_score
 import numpy as np
 
@@ -35,17 +36,19 @@ if __name__=="__main__":
     y_result = RFRegressor.predict(x_test)
 
     #RMSE Calsulation
-    e=y_result - y_test
-    xval_err =np.dot(e,e)
-    rmse_10cv = np.sqrt(xval_err/len(x))
-    print("RMSE: %.2f" %rmse_10cv)
+    #e=y_result - y_test
+    #xval_err =np.dot(e,e)
+    #rmse_10cv = np.sqrt(xval_err/len(x))
+    #print("RMSE: %.2f" %rmse_10cv)
     #y_test['result'] = y_result
     #print(y_result)
 
     #print(y_test)
 
     #Calculating RMSE
-    #RMSE = mean_squared_error(y_test,y_result)
+    RMSE = np.sqrt(mean_squared_error(y_test,y_result))
+    R2 = r2_score(y_test,y_result)
     #accuracy = accuracy_score(y_test,y_result)
-    #print(RMSE)
+    print("RMSE : ", RMSE)
+    print("\nR2 : ",R2)
     #print(accuracy)

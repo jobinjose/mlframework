@@ -27,12 +27,17 @@ linear_reg.fit(x_train,y_train)
 
 # test set predictions
 y_pred = linear_reg.predict(x_test)
-e=y_pred - y_test
-xval_err =np.dot(e,e)
-rmse_10cv = np.sqrt(xval_err/len(x))
-print("RMSE: %.2f" %rmse_10cv)
+#e=y_pred - y_test
+#xval_err =np.dot(e,e)
+#rmse_10cv = np.sqrt(xval_err/len(x))
+#print("RMSE: %.2f" %rmse_10cv)
 
 # Metrics
+RMSE = np.sqrt(mean_squared_error(y_test,y_pred))
+R2 = r2_score(y_test,y_pred)
+#accuracy = accuracy_score(y_test,y_result)
+print("RMSE : ", RMSE)
+print("\nR2 : ",R2)
 #Coefficient
 #print('Coefficients: \n', linear_reg.coef_)
 # The mean squared error
