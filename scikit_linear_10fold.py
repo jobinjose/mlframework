@@ -11,11 +11,12 @@ from dataProcessing import dataProcessing
 #Import the data
 data = pd.read_csv('housing dataset.csv')
 #get the x by droping the dependent variable
-x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle','SalePrice'],axis = 1)
+x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
 x=dataProcessing(x)    #dataprocessing
 
 #set the dependent variable which is saleprice
-y=data['SalePrice']
+y=x['SalePrice']
+x=x.drop(['SalePrice'],axis = 1)
 
 #linear regression object creation
 no_of_folds = 10

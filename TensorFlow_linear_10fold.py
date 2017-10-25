@@ -22,11 +22,12 @@ sess = tf.Session()
 #Import the data
 data = pd.read_csv('housing dataset.csv')
 #get the x by droping the dependent variable
-x_data=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle','SalePrice'],axis = 1)
+x_data=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
 x_data=dataProcessing(x_data)    #dataprocessing
 
 #set the dependent variable which is saleprice
-y_data=data['SalePrice']
+y_data=x_data['SalePrice']
+x_data=x_data.drop(['SalePrice'],axis = 1)
 
 kf = KFold(n_splits=no_of_folds)
 kf.get_n_splits(x_data)
