@@ -6,6 +6,22 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
+<<<<<<< HEAD
+from sklearn.metrics import cohen_kappa_score
+=======
+<<<<<<< HEAD
+from sklearn.metrics import f1_score
+>>>>>>> 792a00f5e8deeac20141ffe466c20faa66c43018
+import numpy as np
+from sklearn.model_selection import KFold
+
+n_splits = 10
+#number of hidden layers in th perceptron
+<<<<<<< HEAD
+hiddenlayersizes = 50,50,50
+=======
+hiddenlayersizes = 30,30,30
+=======
 from sklearn.metrics import cohen_kappa_score
 import numpy as np
 from sklearn.model_selection import KFold
@@ -13,6 +29,8 @@ from sklearn.model_selection import KFold
 n_splits = 10
 #number of hidden layers in th perceptron
 hiddenlayersizes = 50,50,50
+>>>>>>> f9e214768ce2796f3be2d43238fb6fd145c38ea9
+>>>>>>> 792a00f5e8deeac20141ffe466c20faa66c43018
 max_iter = 500
 
 if __name__=="__main__":
@@ -23,10 +41,23 @@ if __name__=="__main__":
     #all the variables except SalePrice is taken as X variables
     data=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu'],axis=1)
     data=dataProcessing(data)    #dataprocessing
+<<<<<<< HEAD
     chunk_split_start_loop_size = 100
     flag=1
     while chunk_split_start_loop_size <= data.shape[0]:
         x=data.head(chunk_split_start_loop_size)
+=======
+<<<<<<< HEAD
+    flag=1
+    while chunk_size <= data.shape[0]:
+        x=data.head(chunk_size)
+=======
+    chunk_split_start_loop_size = 100
+    flag=1
+    while chunk_split_start_loop_size <= data.shape[0]:
+        x=data.head(chunk_split_start_loop_size)
+>>>>>>> f9e214768ce2796f3be2d43238fb6fd145c38ea9
+>>>>>>> 792a00f5e8deeac20141ffe466c20faa66c43018
         # Saleprice is assined as target variable
         y=x['SaleCondition']
         x=x.drop(['SaleCondition'],axis=1)
@@ -36,7 +67,14 @@ if __name__=="__main__":
         kf = KFold(n_splits=n_splits)
         kf.get_n_splits(x)
         accuracy=0
+<<<<<<< HEAD
         cohenkappascore=0
+=======
+<<<<<<< HEAD
+=======
+        cohenkappascore=0
+>>>>>>> f9e214768ce2796f3be2d43238fb6fd145c38ea9
+>>>>>>> 792a00f5e8deeac20141ffe466c20faa66c43018
         i=0
         for train,test in kf.split(x):
             i+=1
@@ -48,6 +86,27 @@ if __name__=="__main__":
             #print(y_pred)
             #print(confusion_matrix(y_test,y_pred))
             accuracy += accuracy_score(y.iloc[test],y_pred)
+<<<<<<< HEAD
+            cohenkappascore += cohen_kappa_score(y.iloc[test],y_pred)
+=======
+<<<<<<< HEAD
+>>>>>>> 792a00f5e8deeac20141ffe466c20faa66c43018
+
+        accuracy = accuracy/n_splits
+        cohenkappascore = cohenkappascore/n_splits
+        print("Accuracy for chunk size ",chunk_split_start_loop_size,":",accuracy*100,"%")
+        print("Cohen kappa score for chunk size ",chunk_split_start_loop_size,": ",cohenkappascore)
+        #print("Classification Report: \n",classification_report(y_test,y_pred))
+
+        if flag == 1:
+            chunk_split_start_loop_size=chunk_split_start_loop_size*5
+            flag = 0
+        else:
+<<<<<<< HEAD
+            chunk_split_start_loop_size=chunk_split_start_loop_size*2
+=======
+            chunk_size=chunk_size*2
+=======
             cohenkappascore += cohen_kappa_score(y.iloc[test],y_pred)
 
         accuracy = accuracy/n_splits
@@ -61,4 +120,6 @@ if __name__=="__main__":
             flag = 0
         else:
             chunk_split_start_loop_size=chunk_split_start_loop_size*2
+>>>>>>> f9e214768ce2796f3be2d43238fb6fd145c38ea9
+>>>>>>> 792a00f5e8deeac20141ffe466c20faa66c43018
             flag = 1
