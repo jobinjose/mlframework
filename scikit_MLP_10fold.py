@@ -7,6 +7,7 @@ from sklearn import datasets
 import numpy as np
 from sklearn.metrics import mean_squared_error, r2_score
 from dataProcessing import dataProcessing
+from sklearn.model_selection import KFold
 
 #input parameters
 #dataset file is entered here
@@ -24,22 +25,30 @@ x=dataProcessing(x)    #dataprocessing
 y=x['SalePrice']
 x=x.drop(['SalePrice'],axis = 1)
 
-#split the data into 70:30 (train:test)
-x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=.30)
+no_of_folds = 10
+kf = KFold(n_splits=no_of_folds)
+kf.get_n_splits(x)
+xval_err = 0
+RMSE = []
+R2 = []
 
-#multi layer perceptron
-mlp = MLPRegressor(hidden_layer_sizes=(hiddenlayersizes))
+for train,test in kf.split(x):
+    #multi layer perceptron
+    mlp = MLPRegressor(hidden_layer_sizes=(hiddenlayersizes))
 
-#train the model
-mlp.fit(x_train,y_train)
+    #train the model
+    mlp.fit(x.iloc[train],y.iloc[train])
 
-# test set predictions
-y_pred = mlp.predict(x_test)
+    # test set predictions
+    y_pred = mlp.predict(x.iloc[test])
 
-# Metrics
-#Coefficient
-#print('Coefficients: \n', mlp.coefs_)
-# The mean squared error
-print("RMSE: " ,np.sqrt(mean_squared_error(y_test, y_pred)))
-# Explained variance score: 1 is perfect prediction
-print('R2: ' , r2_score(y_test, y_pred))
+    RMSE.append(np.sqrt(mean_squared_error(y.iloc[test],y_pred)))
+    R2.append(r2_score(y.iloc[test],y_pred))
+
+    # Metrics
+    #Coefficient
+    #print('Coefficients: \n', mlp.coefs_)
+    # The mean squared error
+print("RMSE: " ,sum(RMSE)/no_of_folds)
+    # Explained variance score: 1 is perfect prediction
+print('R2: ' , sum(R2)/no_of_folds)

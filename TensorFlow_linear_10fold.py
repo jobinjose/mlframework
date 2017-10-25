@@ -8,7 +8,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
 learning_rate = 0.00000000005
-epochs = 1000
+epochs = 100
 display_step = 50
 no_of_folds = 10
 sess = tf.Session()
@@ -37,6 +37,7 @@ r2 = []
 rmse_10fold = 0
 
 for train, test in kf.split(x_data):
+    print("abc")
     x_train_array = np.asarray(x_data.iloc[train].values.tolist())
 
     #print(x_train_array)
