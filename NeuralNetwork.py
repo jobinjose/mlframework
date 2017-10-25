@@ -11,7 +11,7 @@ import numpy as np
 
 testsize = 0.30
 #number of hidden layers in th perceptron
-hiddenlayersizes = 50,50,50
+hiddenlayersizes = 20,20,20
 max_iter = 500
 
 if __name__=="__main__":
