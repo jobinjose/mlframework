@@ -16,8 +16,8 @@ display_step = 1
 n_hidden_1 = 10 # 1st layer number of neurons
 n_hidden_2 = 10 # 2nd layer number of neurons
 
-n_input = 263 # number of features
-n_classes = 1 # one target
+#n_input = 263 # number of features
+#n_classes = 1 # one target
 
 sess = tf.Session()
 #Import the data
@@ -49,6 +49,10 @@ x_test_array=np.float32(x_test_array)
 y_test_array=np.float32(y_test_array)
 
 n_samples = x_train_array.shape[0]
+
+n_input = x_train_array.shape[1] # number of features
+n_classes = 1 # one target
+
 print("rows: ",n_samples)
 print("colums : ", x_train_array.shape[1])
 # tf Graph Input
