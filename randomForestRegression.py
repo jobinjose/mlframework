@@ -4,8 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from dataProcessing import dataProcessing
 from sklearn.metrics import mean_squared_error
-from sklearn.metrics import accuracy_score
+#from sklearn.metrics import accuracy_score
 import numpy as np
+from sklearn.metrics import r2_score
 
 testsize = 0.30
 no_of_trees = 5000
@@ -45,7 +46,9 @@ if __name__=="__main__":
         e=y_result - y_test
         xval_err =np.dot(e,e)
         rmse_10cv = np.sqrt(xval_err/len(x))
+        R2 = r2_score(y_test,y_result)
         print("RMSE for chunk size ", chunk_split_start_loop_size,": %.2f" %rmse_10cv)
+        print("R2 for chunk size ", chunk_split_start_loop_size,": %.2f" %R2)
         #y_test['result'] = y_result
         #print(y_result)
 
