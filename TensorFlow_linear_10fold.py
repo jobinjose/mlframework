@@ -35,9 +35,11 @@ error = 0
 rmse = []
 r2 = []
 rmse_10fold = 0
+i=0
 
 for train, test in kf.split(x_data):
-    print("abc")
+    i+=1
+    print("Iteration : ", i)
     x_train_array = np.asarray(x_data.iloc[train].values.tolist())
 
     #print(x_train_array)
