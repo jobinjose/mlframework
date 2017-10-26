@@ -14,7 +14,7 @@ from pyspark.ml.feature import VectorAssembler
 no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
-    houseData = p.read_csv("housing dataset.csv")
+    houseData = p.read_csv("kc_house_data.csv")
 
     #all the variables except SalePrice is taken as X variables
     #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
