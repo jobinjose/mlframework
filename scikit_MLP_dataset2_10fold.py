@@ -27,8 +27,10 @@ kf.get_n_splits(x)
 xval_err = 0
 RMSE = []
 R2 = []
-
+i=0
 for train,test in kf.split(x):
+    i+=1
+    print("Iteration No : ",i)
     #multi layer perceptron
     mlp = MLPRegressor(hidden_layer_sizes=(hiddenlayersizes))
 
