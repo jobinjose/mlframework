@@ -18,6 +18,7 @@ max_iter = 500
 if __name__=="__main__":
     #import dataset
     dataset = p.read_csv("The SUM dataset, with noise.csv",delimiter=";")
+    dataset=dataset.drop(['Noisy Target'],axis = 1)
     #print(houseData.head())
 
     #all the variables except SalePrice is taken as X variables

@@ -2,7 +2,7 @@ import pandas as p
 import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from dataProcessing_sum import dataProcessing_sum_without_noise
+from dataProcessing_NYC import dataProcessing_NYC
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
@@ -14,20 +14,19 @@ n_splits = 10
 
 if __name__=="__main__":
     #import dataset
-    dataset = p.read_csv("The SUM dataset, without noise.csv",delimiter=";")
-    dataset=dataset.drop(['Target'],axis = 1)
+    dataset = p.read_csv("New York City Taxi Trip Duration.csv",delimiter=";")
     #print(houseData.head())
 
     #all the variables except SalePrice is taken as X variables
 
-    data=dataProcessing_sum_without_noise(dataset)    #dataprocessing
+    data=dataProcessing_NYC(dataset)    #dataprocessing
     chunk_split_start_loop_size = 100
     flag=1
     while chunk_split_start_loop_size <= data.shape[0]:
         x=data.head(chunk_split_start_loop_size)
         # Saleprice is assined as target variable
-        y=x['Target Class']
-        x=x.drop(['Target Class'],axis=1)
+        y=x['vendor_id']
+        x=x.drop(['vendor_id'],axis=1)
         #x = p.get_dummies(x)
 
         # Splitting the dataset into 10 folds

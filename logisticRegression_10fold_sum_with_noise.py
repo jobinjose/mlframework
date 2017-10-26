@@ -16,6 +16,7 @@ if __name__=="__main__":
     #import dataset
     dataset = p.read_csv("The SUM dataset, with noise.csv",delimiter=";")
     #print(houseData.head())
+    dataset=dataset.drop(['Noisy Target'],axis = 1)
 
     #all the variables except SalePrice is taken as X variables
     data=dataProcessing_sum_noise(dataset)    #dataprocessing
