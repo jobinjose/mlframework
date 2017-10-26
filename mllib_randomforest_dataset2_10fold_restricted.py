@@ -15,7 +15,7 @@ from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
 no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
-    NYCData = pd.read_csv("New York City Taxi Trip Duration.csv",nrows = 100000)
+    NYCData = p.read_csv("New York City Taxi Trip Duration.csv",nrows = 100000)
 
     #all the variables except trip_duration is taken as X variables
     x=dataProcessing_NYC(NYCData)

@@ -14,7 +14,7 @@ from pyspark.ml.feature import VectorAssembler
 no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
-    NYCData = pd.read_csv("New York City Taxi Trip Duration.csv")
+    NYCData = p.read_csv("New York City Taxi Trip Duration.csv")
 
     #all the variables except trip_duration is taken as X variables
     x=dataProcessing_NYC(NYCData)
@@ -37,7 +37,7 @@ if __name__=="__main__":
 
     test_data_transformed = assembler.transform(test_data)
     prediction = regression_model.transform(test_data_transformed)
-    
+
     evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='trip_duration')
     rmse = evaluator.evaluate(prediction, {evaluator.metricName: "rmse"})
     r2 = evaluator.evaluate(prediction, {evaluator.metricName: "r2"})
