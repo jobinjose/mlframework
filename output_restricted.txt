@@ -1,0 +1,9 @@
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_linear_dataset2_70_restricted.py
+RMSE :  2985.64148105
+
+R2 :  0.0282040190135
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_linear_dataset2_10fold_restricted.py
+RMSE :  2935.07015333
+
+R2 :  0.0313773414014
