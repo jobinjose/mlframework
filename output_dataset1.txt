@@ -76,3 +76,8 @@ C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_linear.py
 RMSE:  418793.0
 
 R2 :  -247604.0
+
+C:\Users\HP\Documents\GitHub\mlframework>python TensorFlow_linear_10fold.py
+RMSE :  546589.15625
+
+R2 :  -128759.715625
