@@ -2,3 +2,7 @@ C:\Users\HP\Documents\GitHub\mlframework>python scikit_linear_dataset2_10fold.py
 RMSE :  4532.56706173
 
 R2 :  0.0195988294159
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_dataset2_70-30.py
+RMSE:  4465.47490659
+R2:  -0.00288217929941
