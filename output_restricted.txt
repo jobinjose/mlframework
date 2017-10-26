@@ -27,3 +27,25 @@ C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_randomforest_dataset2
 RMSE :  2942.42573242
 
 R2 :  0.0265597403049
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>spark-submit mllib_linear_datas
+et2_10fold_restricted.py
+RMSE :  2959.3543329292497
+
+r2 :  0.029843156675277482
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>spark-submit mllib_linear_datas
+et2_70_restricted.py
+RMSE :  2977.8940665660684
+R2 :  0.026064280738887113
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>spark-submit mllib_randomforest
+_dataset2_10fold_restricted.py
+RMSE :  2915.206152100621
+
+r2 :  0.028929789668852027
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>spark-submit mllib_randomforest
+_dataset2_70-30_restricted.py
+RMSE :  2918.0654154998288
+R2 :  0.02767396024351354
