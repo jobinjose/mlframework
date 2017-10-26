@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np
 import os
-from dataProcessing_NYC import dataProcessing_NY
+from dataProcessing_NYC import dataProcessing_NYC
 from sklearn.model_selection import KFold
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
