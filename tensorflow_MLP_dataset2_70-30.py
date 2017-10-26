@@ -8,7 +8,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
 learning_rate = 0.01
-epochs = 10
+epochs = 50
 display_step = 1
 
 # Network Parameters
