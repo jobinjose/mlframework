@@ -206,3 +206,56 @@ RMSE on 10 fold for chunk size  100000  :  90297.8211049
 R2 on 10 fold for chunk size  100000  :  0.983287171558
 RMSE on 10 fold for chunk size  500000  :  89479.6624972
 R2 on 10 fold for chunk size  500000  :  0.983549710528
+
+kc housing dataset
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python logisticRegression_10fol
+d_kc_dataset.py
+Accuracy for chunk size  100 : 62.0 %
+Cohen kappa score for chunk size  100 :  0.0
+Accuracy for chunk size  500 : 61.6 %
+Cohen kappa score for chunk size  500 :  0.0
+Accuracy for chunk size  1000 : 61.3 %
+Cohen kappa score for chunk size  1000 :  0.0
+Accuracy for chunk size  5000 : 61.46 %
+Cohen kappa score for chunk size  5000 :  0.0
+Accuracy for chunk size  10000 : 61.91 %
+Cohen kappa score for chunk size  10000 :  0.0
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python NeuralNetwork_10fold_kc_
+dataset.py
+Accuracy for chunk size  100 : 42.0 %
+Cohen kappa score for chunk size  100 :  0.0
+Accuracy for chunk size  500 : 29.4 %
+Cohen kappa score for chunk size  500 :  0.0
+Accuracy for chunk size  1000 : 28.1 %
+Cohen kappa score for chunk size  1000 :  -0.000724910653917
+Accuracy for chunk size  5000 : 43.28 %
+Cohen kappa score for chunk size  5000 :  -0.00377170625217
+Accuracy for chunk size  10000 : 40.55 %
+Cohen kappa score for chunk size  10000 :  -0.00133002253642
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python linearRegression_10fold_
+kc_dataset.py
+RMSE on 10 fold for chunk size  100 :  216258.915185
+R2 on 10 fold for chunk size  100 :  0.292315688757
+RMSE on 10 fold for chunk size  500 :  200468.096832
+R2 on 10 fold for chunk size  500 :  0.635744357985
+RMSE on 10 fold for chunk size  1000 :  181871.104073
+R2 on 10 fold for chunk size  1000 :  0.698444682883
+RMSE on 10 fold for chunk size  5000 :  210865.802262
+R2 on 10 fold for chunk size  5000 :  0.695221476675
+RMSE on 10 fold for chunk size  10000 :  207876.018181
+R2 on 10 fold for chunk size  10000 :  0.691204371155
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python randomForestRegression_1
+0fold_kc_dataset.py
+RMSE on 10 fold for chunk size  100  :  191262.68326
+R2 on 10 fold for chunk size  100  :  0.491802741649
+RMSE on 10 fold for chunk size  500  :  186181.977654
+R2 on 10 fold for chunk size  500  :  0.687190917404
+RMSE on 10 fold for chunk size  1000  :  157877.063757
+R2 on 10 fold for chunk size  1000  :  0.774832888365
+RMSE on 10 fold for chunk size  5000  :  171206.032093
+R2 on 10 fold for chunk size  5000  :  0.795818061715
+RMSE on 10 fold for chunk size  10000  :  145897.81847
+R2 on 10 fold for chunk size  10000  :  0.846895123402
