@@ -17,11 +17,12 @@ max_iter = 500
 
 if __name__=="__main__":
     #import dataset
-    dataset = p.read_csv("New York City Taxi Trip Duration.csv",delimiter=";")
+    dataset = p.read_csv("New York City Taxi Trip Duration.csv")
     #print(houseData.head())
 
     #all the variables except SalePrice is taken as X variables
     data=dataProcessing_NYC(dataset)    #dataprocessing
+    data=data.drop(['dropoff_datetime','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude'],axis = 1)
     chunk_split_start_loop_size = 100
     flag=1
     while chunk_split_start_loop_size <= data.shape[0]:
