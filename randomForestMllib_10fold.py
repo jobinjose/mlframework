@@ -5,7 +5,7 @@ from pyspark.ml import Pipeline
 from pyspark.ml.regression import RandomForestRegressor
 from pyspark.ml.feature import VectorIndexer
 from pyspark.ml.evaluation import RegressionEvaluator
-from dataProcessing import dataProcessing
+from dataProcessing_kc_data import dataProcessing_kc_data
 from pyspark.sql import SQLContext
 from pyspark.context import SparkContext
 from pyspark.ml.linalg import Vectors
@@ -15,11 +15,11 @@ from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
 no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
-    houseData = p.read_csv("housing dataset.csv")
+    houseData = p.read_csv("kc_house_data.csv")
 
     #all the variables except SalePrice is taken as X variables
-    x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
-    x=dataProcessing(x)
+    #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
+    x=dataProcessing_kc_data(houseData)
     sc=SparkContext('local','randomForestMllib')
     sqlcontext=SQLContext(sc)
     x_new=sqlcontext.createDataFrame(data=x)
@@ -30,15 +30,15 @@ if __name__=="__main__":
     # Splitting the dataset into training set(70%) and test set (30%)
     #x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)
     #(train_data,test_data) = x_new.randomSplit([0.7,0.3])
-    label='SalePrice'
+    label='price'
     features=list(filter(lambda w: w not in label, x_new.columns))
     #print(features)
     assembler = VectorAssembler(inputCols=features,outputCol="features")
     data_transformed = assembler.transform(x_new)
 
-    regressor = RandomForestRegressor(featuresCol="features", labelCol="SalePrice", predictionCol="prediction",numTrees=no_of_trees)
-    evaluator_rmse = RegressionEvaluator(labelCol="SalePrice", predictionCol="prediction",metricName="rmse")
-    evaluator_r2 = RegressionEvaluator(labelCol="SalePrice", predictionCol="prediction",metricName="r2")
+    regressor = RandomForestRegressor(featuresCol="features", labelCol="price", predictionCol="prediction",numTrees=no_of_trees)
+    evaluator_rmse = RegressionEvaluator(labelCol="price", predictionCol="prediction",metricName="rmse")
+    evaluator_r2 = RegressionEvaluator(labelCol="price", predictionCol="prediction",metricName="r2")
 
     paramGrid = ParamGridBuilder().build()
     crossval = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator_rmse, numFolds=10)
