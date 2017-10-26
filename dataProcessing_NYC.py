@@ -39,6 +39,7 @@ def dataProcessing_NYC(df):
 
     # One hot encoding
     #df = df.drop(['pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude'],axis=1)
+    df["id"] = p.to_numeric(df["id"])
     df['store_and_fwd_flag'] = p.get_dummies(df['store_and_fwd_flag']) # if columns = None, then all the categorical columns will be encoded
     #print(list(x_objdf))
 
