@@ -8,6 +8,10 @@ C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_dataset2_70-30.py
 RMSE:  4465.47490659
 R2:  -0.00288217929941
 
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_dataset2_10fold.py
+RMSE:  4561.35669127
+R2:  0.0034929746681
+
 -----------------------------------------------------------------------------------------------------------------------------------
 
 TASK 1
