@@ -77,7 +77,7 @@ for i in list(range(epochs)):
 	#if i % 10 == 0.:
 	#for (x, y) in zip(x_train_array, y_train_array):
 		#print(x_train_array)
-	sess.run(optimizer, feed_dict={X: x, Y: y})
+	sess.run(optimizer, feed_dict={X: x_train_array, Y: y_train_array})
 
 
 rmse = sess.run(tf.sqrt(tf.reduce_mean(tf.square(error))), feed_dict={X: x_test_array, Y: y_test_array})
