@@ -11,7 +11,7 @@ from sklearn.metrics import r2_score, mean_squared_error
 n_splits = 10
 
 #Import the data
-dataset = p.read_csv("The SUM dataset, with noise.csv",delimiter=";")
+dataset = pd.read_csv("The SUM dataset, with noise.csv",delimiter=";")
 #get the x by droping the dependent variable
 dataset=dataset.drop(['Noisy Target Class'],axis = 1)
 data=dataProcessing_sum_noise(dataset)    #dataprocessing
