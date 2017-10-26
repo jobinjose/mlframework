@@ -7,3 +7,23 @@ C:\Users\HP\Documents\GitHub\mlframework>python scikit_linear_dataset2_10fold_re
 RMSE :  2935.07015333
 
 R2 :  0.0313773414014
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_randomforest_dataset2_70-30_restricted.py
+RMSE :  3214.42640237
+
+R2 :  -0.144938370679
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_randomforest_dataset2_10fold_restricted.py
+RMSE :  3222.92026769
+
+R2 :  -0.175254341167
+
+C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_randomforest_dataset2_70-30_restricted.py
+RMSE:  2778.2
+
+R2 :  0.0311267
+
+C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_randomforest_dataset2_10fold_restricted.py
+RMSE :  2942.42573242
+
+R2 :  0.0265597403049
