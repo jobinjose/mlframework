@@ -52,16 +52,6 @@ C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_randomforest_dataset2
 RMSE :  4536.11015625
 
 R2 :  0.0169474363327
-
-C:\Users\HP\Documents\GitHub\mlframework>python randomForestTensorflow.py
-RMSE:  36620.6
-
-R2 :  0.790391
-
-C:\Users\HP\Documents\GitHub\mlframework>python RandomForestTensorFlow_10fold.py
-RMSE :  33008.1167969
-
-R2 :  0.823646450043
 -----------------------------------------------------------------------------------------------------------------------------------
 
 TASK 1
