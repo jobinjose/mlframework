@@ -68,7 +68,7 @@ for train, test in kf.split(x_data):
     cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
 
 
-    optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+    #optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 
 

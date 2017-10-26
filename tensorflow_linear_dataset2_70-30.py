@@ -66,7 +66,7 @@ unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, pred)))
 cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
 
 # Gradient descent
-optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+#optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
 init = tf.global_variables_initializer()
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)

@@ -8,7 +8,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
 learning_rate = 0.01
-epochs = 50
+epochs = 10
 display_step = 1
 
 # Network Parameters
@@ -48,6 +48,7 @@ y_test_array=np.float32(y_test_array)
 n_samples = x_train_array.shape[0]
 
 n_input = x_train_array.shape[1] # number of features
+print("no of clumns : ", x_train_array.shape[0])
 n_classes = 1 # one target
 
 #print("rows: ",n_samples)
@@ -92,6 +93,7 @@ unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, pred)))
 # Define loss and optimizer
 cost = tf.reduce_mean(tf.square(Y-pred))
 #cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
+#optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 optimizer =  tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
 

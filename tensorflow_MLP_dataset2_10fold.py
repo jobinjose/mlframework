@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np
 import os
-from dataProcessing_NYC import dataProcessing_NYC
+from dataProcessing_NYC import dataProcessing_NY
 from sklearn.model_selection import KFold
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -99,6 +99,7 @@ for train, test in kf.split(x_data):
     # Define loss and optimizer
     cost = tf.reduce_mean(tf.square(Y-pred))
     #cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
+    #optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
     optimizer =  tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
 
