@@ -49,3 +49,11 @@ C:\Users\meenuneenu\Documents\GitHub\mlframework>spark-submit mllib_randomforest
 _dataset2_70-30_restricted.py
 RMSE :  2918.0654154998288
 R2 :  0.02767396024351354
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_dataset2_70_restricted.py
+RMSE:  3083.08877376
+R2:  -0.0225926877574
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_dataset2_10fold_restricted.py
+RMSE:  3055.79629256
+R2:  -0.0542022876114
