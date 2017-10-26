@@ -17,7 +17,7 @@ no_of_trees = 10
 
 if __name__=="__main__":
     #Import the data
-    data = pd.read_csv('New York City Taxi Trip Duration.csv')
+    data = p.read_csv('New York City Taxi Trip Duration.csv')
     x=dataProcessing_NYC(data)    #dataprocessing
 
     #set the dependent variable which is saleprice
