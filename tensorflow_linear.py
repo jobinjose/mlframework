@@ -3,11 +3,11 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import numpy as np
 import os
-from dataProcessing import dataProcessing
+from dataProcessing_kc_data import dataProcessing_kc_data
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
-learning_rate = 0.00000000005
+learning_rate = 0.00000000000001
 epochs = 50
 display_step = 50
 sess = tf.Session()
@@ -19,14 +19,14 @@ sess = tf.Session()
 
 
 #Import the data
-data = pd.read_csv('housing dataset.csv')
+data = pd.read_csv('kc_house_data.csv')
 #get the x by droping the dependent variable
-x_data=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
-x_data=dataProcessing(x_data)    #dataprocessing
+#x_data=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
+x_data=dataProcessing_kc_data(data)    #dataprocessing
 
 #set the dependent variable which is saleprice
-y_data=x_data['SalePrice']
-x_data=x_data.drop(['SalePrice'],axis = 1)
+y_data=x_data['price']
+x_data=x_data.drop(['price'],axis = 1)
 
 #Splitting the data int train and test as 70/30
 x_train, x_test, y_train, y_test = train_test_split(x_data, y_data,test_size=.30)

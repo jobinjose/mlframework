@@ -4,7 +4,7 @@ import numpy as n
 from tensorflow.contrib.learn.python.learn.estimators import estimator
 from tensorflow.contrib.tensor_forest.client import random_forest
 from tensorflow.contrib.tensor_forest.python import tensor_forest
-from randomForestScikitLearn import dataProcessing
+from dataProcessing_kc_data import dataProcessing_kc_data
 from sklearn.model_selection import train_test_split
 from tensorflow.contrib.learn.python.learn import metric_spec
 from tensorflow.contrib.tensor_forest.client import eval_metrics
@@ -17,14 +17,14 @@ no_of_trees = 10
 
 if __name__=="__main__":
     #import dataset
-    houseData = p.read_csv("housing dataset.csv")
+    houseData = p.read_csv("kc_house_data.csv")
 
     #all the variables except SalePrice is taken as X variables
-    x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
-    x=dataProcessing(x)
+    #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
+    x=dataProcessing_kc_data(houseData)
     # Saleprice is assined as target variable
-    y=x['SalePrice']
-    x=x.drop(['SalePrice'],axis=1)
+    y=x['price']
+    x=x.drop(['price'],axis=1)
 
     # Splitting the dataset into training set(70%) and test set (30%)
     x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)

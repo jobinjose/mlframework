@@ -6,17 +6,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
-from dataProcessing import dataProcessing
+from dataProcessing_kc_data import dataProcessing_kc_data
 
 #Import the data
-data = pd.read_csv('housing dataset.csv')
+data = pd.read_csv('kc_house_data.csv')
 #get the x by droping the dependent variable
-x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
-x=dataProcessing(x)    #dataprocessing
+#x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
+x=dataProcessing_kc_data(data)    #dataprocessing
 
 #set the dependent variable which is saleprice
-y=x['SalePrice']
-x=x.drop(['SalePrice'],axis = 1)
+y=x['price']
+x=x.drop(['price'],axis = 1)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=.30)
 

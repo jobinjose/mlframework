@@ -10,7 +10,7 @@ from pyspark.sql import SQLContext
 #from pyspark.mllib.evaluation import RegressionMetrics
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.feature import VectorAssembler
-from dataProcessing import dataProcessing
+from dataProcessing_kc_data import dataProcessing_kc_data
 from pyspark.ml.evaluation import RegressionEvaluator
 import mllib
 from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
@@ -18,11 +18,11 @@ from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
 from pyspark import SparkContext, SparkConf
 
 #import dataset
-houseData = pd.read_csv("housing dataset.csv")
+houseData = pd.read_csv("kc_house_data.csv")
 
 #all the variables except SalePrice is taken as X variables
-x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
-x=dataProcessing(x)
+#x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
+x=dataProcessing_kc_data(houseData)
 sc=SparkContext('local','LinearRegressionMllib')
 sqlcontext=SQLContext(sc)
 x_new=sqlcontext.createDataFrame(data=x)
@@ -33,14 +33,14 @@ x_new=sqlcontext.createDataFrame(data=x)
 # Splitting the dataset into training set(70%) and test set (30%)
 #x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)
 #(train_data,test_data) = x_new.randomSplit([0.7,0.3])
-label='SalePrice'
+label='price'
 features=list(filter(lambda w: w not in label, x_new.columns))
 #print(features)
 assembler = VectorAssembler(inputCols=features,outputCol="features")
 data_transformed = assembler.transform(x_new)
 
-linearRegressor = LinearRegression(labelCol="SalePrice", featuresCol="features", maxIter=10)
-evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='SalePrice')
+linearRegressor = LinearRegression(labelCol="price", featuresCol="features", maxIter=10)
+evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='price')
 
 paramGrid = ParamGridBuilder().addGrid(linearRegressor.regParam, [0.1, 0.01]).addGrid(linearRegressor.elasticNetParam, [0, 1]).build()
 crossval = CrossValidator(estimator=linearRegressor, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=10)

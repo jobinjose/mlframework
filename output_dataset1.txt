@@ -1,0 +1,37 @@
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_linear.py
+RMSE :  200658.766976
+
+R2 :  0.687433896483
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_linear_10fold.py
+RMSE :  201975.409344
+
+R2 :  0.695256857104
+
+C:\Users\HP\Documents\GitHub\mlframework>python randomForestScikitLearn.py
+RMSE :  144738.09964
+
+R2 :  0.852024184318
+
+C:\Users\HP\Documents\GitHub\mlframework>python randomForestScikitLearn_10fold.py
+RMSE :  138214.011594
+
+R2 :  0.856657609161
+
+C:\Users\HP\Documents\GitHub\mlframework>python randomForestTensorflow.py
+RMSE:  196895.0
+
+R2 :  0.691743
+
+C:\Users\HP\Documents\GitHub\mlframework>python RandomForestTensorFlow_10fold.py
+RMSE :  189587.951563
+
+R2 :  0.731651008129
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP.py
+RMSE:  498548.278957
+R2:  -0.956238874545
+
+C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_10fold.py
+RMSE:  472204.945794
+R2:  -0.672976337905

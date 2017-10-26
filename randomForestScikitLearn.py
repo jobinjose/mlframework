@@ -2,7 +2,7 @@ import pandas as p
 import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from dataProcessing import dataProcessing
+from dataProcessing_kc_data import dataProcessing_kc_data
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn.metrics import accuracy_score
@@ -11,15 +11,15 @@ import numpy as np
 no_of_trees = 10
 if __name__=="__main__":
     #import dataset
-    houseData = p.read_csv("housing dataset.csv")
+    houseData = p.read_csv("kc_house_data.csv")
     #print(houseData.head())
 
     #all the variables except SalePrice is taken as X variables
-    x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
-    x=dataProcessing(x)    #dataprocessing
+    #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
+    x=dataProcessing_kc_data(houseData)    #dataprocessing
     # Saleprice is assined as target variable
-    y=x['SalePrice']
-    x=x.drop(['SalePrice'],axis=1)
+    y=x['price']
+    x=x.drop(['price'],axis=1)
     #print(list(x))
     #print(y)
 

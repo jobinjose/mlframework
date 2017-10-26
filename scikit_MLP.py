@@ -6,23 +6,23 @@ from sklearn.neural_network import MLPRegressor
 from sklearn import datasets
 import numpy as np
 from sklearn.metrics import mean_squared_error, r2_score
-from dataProcessing import dataProcessing
+from dataProcessing_kc_data import dataProcessing_kc_data
 
 #input parameters
 #dataset file is entered here
-inputdataset = 'housing dataset.csv'
+inputdataset = 'kc_house_data.csv'
 #number of hidden layers in th perceptron
 hiddenlayersizes = 30,30,30
 
 #Import the data
-data = pd.read_csv('housing dataset.csv')
+data = pd.read_csv('kc_house_data.csv')
 #get the x by droping the dependent variable
-x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
-x=dataProcessing(x)    #dataprocessing
+#x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
+x=dataProcessing_kc_data(data)    #dataprocessing
 
 #set the dependent variable which is saleprice
-y=x['SalePrice']
-x=x.drop(['SalePrice'],axis = 1)
+y=x['price']
+x=x.drop(['price'],axis = 1)
 
 #split the data into 70:30 (train:test)
 x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=.30)

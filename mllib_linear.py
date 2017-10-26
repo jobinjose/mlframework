@@ -10,18 +10,18 @@ from pyspark.sql import SQLContext
 #from pyspark.mllib.evaluation import RegressionMetrics
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.feature import VectorAssembler
-from dataProcessing import dataProcessing
+from dataProcessing_kc_data import dataProcessing_kc_data
 from pyspark.ml.evaluation import RegressionEvaluator
 import mllib
 
 from pyspark import SparkContext, SparkConf
 
 #import dataset
-houseData = pd.read_csv("housing dataset.csv")
+houseData = pd.read_csv("kc_house_data.csv")
 
 #all the variables except SalePrice is taken as X variables
-x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
-x=dataProcessing(x)
+#x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
+x=dataProcessing_kc_data(houseData)
 sc=SparkContext('local','LinearRegressionMllib')
 sqlcontext=SQLContext(sc)
 x_new=sqlcontext.createDataFrame(data=x)
@@ -32,18 +32,18 @@ x_new=sqlcontext.createDataFrame(data=x)
 # Splitting the dataset into training set(70%) and test set (30%)
 #x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)
 (train_data,test_data) = x_new.randomSplit([0.7,0.3])
-label='SalePrice'
+label='price'
 features=list(filter(lambda w: w not in label, train_data.columns))
 #print(features)
 assembler = VectorAssembler(inputCols=features,outputCol="features")
 train_data_transformed = assembler.transform(train_data)
 
-linearRegressor = LinearRegression(labelCol="SalePrice", featuresCol="features", maxIter=10)
+linearRegressor = LinearRegression(labelCol="price", featuresCol="features", maxIter=10)
 linearModel = linearRegressor.fit(train_data_transformed)
 
 test_data_transformed = assembler.transform(test_data)
 prediction = linearModel.transform(test_data_transformed)
-evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='SalePrice')
+evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='price')
 rmse = evaluator.evaluate(prediction, {evaluator.metricName: "rmse"})
 r2 = evaluator.evaluate(prediction, {evaluator.metricName: "r2"})
 print("RMSE : ", rmse)
