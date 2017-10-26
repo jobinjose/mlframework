@@ -259,3 +259,88 @@ RMSE on 10 fold for chunk size  5000  :  171206.032093
 R2 on 10 fold for chunk size  5000  :  0.795818061715
 RMSE on 10 fold for chunk size  10000  :  145897.81847
 R2 on 10 fold for chunk size  10000  :  0.846895123402
+
+dataset4 - NYC taxi dataset
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python logisticRegression_10fol
+d_Dataset4.py
+Accuracy for chunk size  100 : 48.0 %
+Cohen kappa score for chunk size  100 :  0.0291167434716
+Accuracy for chunk size  500 : 49.6 %
+Cohen kappa score for chunk size  500 :  0.00205336728951
+Accuracy for chunk size  1000 : 53.4 %
+Cohen kappa score for chunk size  1000 :  0.0327369598381
+Accuracy for chunk size  5000 : 52.74 %
+Cohen kappa score for chunk size  5000 :  0.00729547830633
+Accuracy for chunk size  10000 : 53.03 %
+Cohen kappa score for chunk size  10000 :  0.0
+Accuracy for chunk size  50000 : 52.944 %
+Cohen kappa score for chunk size  50000 :  0.0
+Accuracy for chunk size  100000 : 53.349 %
+Cohen kappa score for chunk size  100000 :  0.0
+Accuracy for chunk size  500000 : 53.4454 %
+Cohen kappa score for chunk size  500000 :  0.0
+Accuracy for chunk size  1000000 : 53.4456 %
+Cohen kappa score for chunk size  1000000 :  0.0
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python NeuralNetwork_10fold_Dat
+aset4.py
+Accuracy for chunk size  100 : 53.0 %
+Cohen kappa score for chunk size  100 :  0.00540540540541
+Accuracy for chunk size  500 : 51.0 %
+Cohen kappa score for chunk size  500 :  -0.00249240633965
+Accuracy for chunk size  1000 : 50.9 %
+Cohen kappa score for chunk size  1000 :  -0.00207995702256
+Accuracy for chunk size  5000 : 50.98 %
+Cohen kappa score for chunk size  5000 :  0.0074102448929
+Accuracy for chunk size  10000 : 51.01 %
+Cohen kappa score for chunk size  10000 :  -0.0038081332882
+Accuracy for chunk size  50000 : 50.962 %
+Cohen kappa score for chunk size  50000 :  0.00294875829355
+Accuracy for chunk size  100000 : 50.94 %
+Cohen kappa score for chunk size  100000 :  0.00147741997197
+Accuracy for chunk size  500000 : 53.4368 %
+Cohen kappa score for chunk size  500000 :  -0.000133070843486
+Accuracy for chunk size  1000000 : 53.4451 %
+Cohen kappa score for chunk size  1000000 :  -9.42358134089e-06
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python linearRegression_10fold_
+Dataset4.py
+RMSE on 10 fold for chunk size  100 :  489.621367973
+R2 on 10 fold for chunk size  100 :  0.12401163251
+RMSE on 10 fold for chunk size  500 :  456.629182963
+R2 on 10 fold for chunk size  500 :  0.497831926151
+RMSE on 10 fold for chunk size  1000 :  1274.98736791
+R2 on 10 fold for chunk size  1000 :  0.335592424268
+RMSE on 10 fold for chunk size  5000 :  2276.1276585
+R2 on 10 fold for chunk size  5000 :  0.254116978983
+RMSE on 10 fold for chunk size  10000 :  2468.20599548
+R2 on 10 fold for chunk size  10000 :  0.165322339365
+RMSE on 10 fold for chunk size  50000 :  3109.36879857
+R2 on 10 fold for chunk size  50000 :  0.0278820108197
+RMSE on 10 fold for chunk size  100000 :  2935.07015333
+R2 on 10 fold for chunk size  100000 :  0.0313773414014
+RMSE on 10 fold for chunk size  500000 :  3719.31492694
+R2 on 10 fold for chunk size  500000 :  0.0206416505067
+RMSE on 10 fold for chunk size  1000000 :  4944.13467853
+R2 on 10 fold for chunk size  1000000 :  0.0185649349931
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python randomForest_10fold_Data
+set4.py
+RMSE on 10 fold for chunk size  100  :  540.101401667
+R2 on 10 fold for chunk size  100  :  -0.177848373615
+RMSE on 10 fold for chunk size  500  :  482.445260801
+R2 on 10 fold for chunk size  500  :  0.439846612202
+RMSE on 10 fold for chunk size  1000  :  1845.55368634
+R2 on 10 fold for chunk size  1000  :  -3.13668063826
+RMSE on 10 fold for chunk size  5000  :  3125.77385925
+R2 on 10 fold for chunk size  5000  :  -3.81279427089
+RMSE on 10 fold for chunk size  10000  :  3116.64682035
+R2 on 10 fold for chunk size  10000  :  -1.61507879307
+RMSE on 10 fold for chunk size  50000  :  3416.92942011
+R2 on 10 fold for chunk size  50000  :  -0.178095132977
+RMSE on 10 fold for chunk size  100000  :  3229.60142847
+R2 on 10 fold for chunk size  100000  :  -0.179315724707
+RMSE on 10 fold for chunk size  500000  :  3968.26388201
+R2 on 10 fold for chunk size  500000  :  -0.141607505718
+RMSE on 10 fold for chunk size  1000000  :  6036.22038406
+R2 on 10 fold for chunk size  1000000  :  -1.13663072103
