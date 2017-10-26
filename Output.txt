@@ -111,3 +111,22 @@ Accuracy for chunk size  100000 : 93.482 %
 Cohen kappa score for chunk size  100000 :  0.803729475843
 Accuracy for chunk size  500000 : 95.4638 %
 Cohen kappa score for chunk size  500000 :  0.826202268745
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python NeuralNetwork_10fold_sum
+_with_noise.py
+Accuracy for chunk size  100 : 79.0 %
+Cohen kappa score for chunk size  100 :  0.224990798675
+Accuracy for chunk size  500 : 55.2 %
+Cohen kappa score for chunk size  500 :  0.273106872738
+Accuracy for chunk size  1000 : 84.2 %
+Cohen kappa score for chunk size  1000 :  0.421203676869
+Accuracy for chunk size  5000 : 88.28 %
+Cohen kappa score for chunk size  5000 :  0.636007462951
+Accuracy for chunk size  10000 : 89.24 %
+Cohen kappa score for chunk size  10000 :  0.651555093124
+Accuracy for chunk size  50000 : 90.886 %
+Cohen kappa score for chunk size  50000 :  0.707565837813
+Accuracy for chunk size  100000 : 92.521 %
+Cohen kappa score for chunk size  100000 :  0.760166513415
+Accuracy for chunk size  500000 : 88.7656 %
+Cohen kappa score for chunk size  500000 :  0.512580706553
