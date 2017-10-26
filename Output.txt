@@ -12,6 +12,18 @@ C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_dataset2_10fold.py
 RMSE:  4561.35669127
 R2:  0.0034929746681
 
+C:\Users\meenuneenu\Documents\GitHub\mlframework>spark-submit mllib_linear.py
+RMSE :  27944.37591182479
+R2 :  0.9024378557810571
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>spark-submit mllib_linear_10fol
+d.py
+RMSE :  22445.017695391616
+
+r2 :  0.9201211817188983
+
+
+
 -----------------------------------------------------------------------------------------------------------------------------------
 
 TASK 1
