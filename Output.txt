@@ -130,3 +130,79 @@ Accuracy for chunk size  100000 : 92.521 %
 Cohen kappa score for chunk size  100000 :  0.760166513415
 Accuracy for chunk size  500000 : 88.7656 %
 Cohen kappa score for chunk size  500000 :  0.512580706553
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python linearRegression_10fold_
+sum_without_noise.py
+RMSE on 10 fold for chunk size  100 :  8.26235038237
+R2 on 10 fold for chunk size  100 :  0.999999999799
+RMSE on 10 fold for chunk size  500 :  8.54170410071
+R2 on 10 fold for chunk size  500 :  0.999999999838
+RMSE on 10 fold for chunk size  1000 :  8.43751789736
+R2 on 10 fold for chunk size  1000 :  0.999999999845
+RMSE on 10 fold for chunk size  5000 :  8.53903041604
+R2 on 10 fold for chunk size  5000 :  0.999999999845
+RMSE on 10 fold for chunk size  10000 :  8.53483511551
+R2 on 10 fold for chunk size  10000 :  0.999999999847
+RMSE on 10 fold for chunk size  50000 :  8.53268873966
+R2 on 10 fold for chunk size  50000 :  0.999999999848
+RMSE on 10 fold for chunk size  100000 :  8.51944774819
+R2 on 10 fold for chunk size  100000 :  0.999999999848
+RMSE on 10 fold for chunk size  500000 :  8.52946026221
+R2 on 10 fold for chunk size  500000 :  0.999999999847
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python linearRegression_10fold_
+sum_with_noise.py
+RMSE on 10 fold for chunk size  100 :  97941.7791322
+R2 on 10 fold for chunk size  100 :  0.974284876395
+RMSE on 10 fold for chunk size  500 :  86909.2515273
+R2 on 10 fold for chunk size  500 :  0.98316933279
+RMSE on 10 fold for chunk size  1000 :  82857.1889939
+R2 on 10 fold for chunk size  1000 :  0.984885211951
+RMSE on 10 fold for chunk size  5000 :  83400.1204881
+R2 on 10 fold for chunk size  5000 :  0.985512012166
+RMSE on 10 fold for chunk size  10000 :  83742.3151753
+R2 on 10 fold for chunk size  10000 :  0.985484431098
+RMSE on 10 fold for chunk size  50000 :  83491.3867791
+R2 on 10 fold for chunk size  50000 :  0.985743755899
+RMSE on 10 fold for chunk size  100000 :  83810.2413898
+R2 on 10 fold for chunk size  100000 :  0.985602416451
+RMSE on 10 fold for chunk size  500000 :  83617.6055208
+R2 on 10 fold for chunk size  500000 :  0.985634531108
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python randomForestRegression_1
+0fold_sum_without_noise.py
+RMSE on 10 fold for chunk size  100  :  28650.6656981
+R2 on 10 fold for chunk size  100  :  0.997478507972
+RMSE on 10 fold for chunk size  500  :  5333.99985762
+R2 on 10 fold for chunk size  500  :  0.999937107014
+RMSE on 10 fold for chunk size  1000  :  2600.447357
+R2 on 10 fold for chunk size  1000  :  0.999985250433
+RMSE on 10 fold for chunk size  5000  :  519.277903668
+R2 on 10 fold for chunk size  5000  :  0.99999942715
+RMSE on 10 fold for chunk size  10000  :  265.535954783
+R2 on 10 fold for chunk size  10000  :  0.999999851515
+RMSE on 10 fold for chunk size  50000  :  53.6989863672
+R2 on 10 fold for chunk size  50000  :  0.999999993967
+RMSE on 10 fold for chunk size  100000  :  28.0091086537
+R2 on 10 fold for chunk size  100000  :  0.999999998356
+RMSE on 10 fold for chunk size  500000  :  4.84596985481
+R2 on 10 fold for chunk size  500000  :  0.999999999951
+
+C:\Users\meenuneenu\Documents\GitHub\mlframework>python randomForestRegression_1
+0fold_sum_with_noise.py
+RMSE on 10 fold for chunk size  100  :  117237.946201
+R2 on 10 fold for chunk size  100  :  0.96367333283
+RMSE on 10 fold for chunk size  500  :  98880.7611017
+R2 on 10 fold for chunk size  500  :  0.978316611767
+RMSE on 10 fold for chunk size  1000  :  93054.3995179
+R2 on 10 fold for chunk size  1000  :  0.981008099476
+RMSE on 10 fold for chunk size  5000  :  92431.7906713
+R2 on 10 fold for chunk size  5000  :  0.982213813225
+RMSE on 10 fold for chunk size  10000  :  91313.3440454
+R2 on 10 fold for chunk size  10000  :  0.982741680309
+RMSE on 10 fold for chunk size  50000  :  90491.7077319
+R2 on 10 fold for chunk size  50000  :  0.983254343721
+RMSE on 10 fold for chunk size  100000  :  90297.8211049
+R2 on 10 fold for chunk size  100000  :  0.983287171558
+RMSE on 10 fold for chunk size  500000  :  89479.6624972
+R2 on 10 fold for chunk size  500000  :  0.983549710528
