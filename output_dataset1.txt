@@ -32,11 +32,17 @@ C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP.py
 RMSE:  498548.278957
 R2:  -0.956238874545
 
-C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_10fold.py
-RMSE:  472204.945794
-R2:  -0.672976337905
-
 C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_MLP_10fold.py
-RMSE:  26244500838.4
+RMSE:  648019.25
 
-R2 :  -1.65269104689e+13
+R2 :  -6844.60732422
+
+C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_MLP.py
+RMSE:  628229.0
+
+R2 :  -20228.1
+
+C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_linear.py
+RMSE:  418793.0
+
+R2 :  -247604.0

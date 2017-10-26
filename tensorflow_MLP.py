@@ -7,7 +7,7 @@ from dataProcessing_kc_data import dataProcessing_kc_data
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
-learning_rate = 0.01
+learning_rate = 0.001
 epochs = 50
 display_step = 1
 
@@ -68,7 +68,8 @@ def multilayer_perceptron(x, weights, biases):
     layer_2 = tf.nn.relu(layer_2)
     # Output layer with linear activation
     out_layer = tf.matmul(layer_2, weights['out']) + biases['out']
-    return out_layer
+    out = tf.sigmoid(out_layer)
+    return out
 
 # Store layers weight & bias
 weights = {
@@ -92,6 +93,9 @@ total_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, tf.reduce_mean(y
 unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, pred)))
 
 # Define loss and optimizer
+#cost = tf.reduce_mean(tf.square(Y-pred))
+#cross_entropy = tf.reduce_sum(-pred * tf.log(Y), 1)
+#loss = tf.reduce_mean(cross_entropy)
 cost = tf.reduce_mean(tf.square(Y-pred))
 #cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
 optimizer =  tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)

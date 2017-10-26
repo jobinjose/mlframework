@@ -7,7 +7,7 @@ from dataProcessing_kc_data import dataProcessing_kc_data
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
-learning_rate = 0.00000000005
+learning_rate = 0.0000000000000005e-5
 epochs = 50
 display_step = 50
 no_of_folds = 10

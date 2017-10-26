@@ -7,7 +7,7 @@ from dataProcessing_kc_data import dataProcessing_kc_data
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
-learning_rate = 0.00000000000001
+learning_rate = 0.0000000000000005e-5
 epochs = 50
 display_step = 50
 sess = tf.Session()
@@ -82,15 +82,6 @@ cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
 #= tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 
-
-#predictions = tf.add(b, tf.matmul(x_train_array, w))
-#error = tf.reduce_mean(tf.square(y_train_array - predictions))
-
-#y,cost = calc(x_train_array, y_train_array)
-
-
-#points = [[], []]
-
 init = tf.global_variables_initializer()
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
 sess.run(init)
@@ -98,26 +89,12 @@ sess.run(init)
 for i in list(range(epochs)):
 	#sess.run(optimizer)
 	#if i % 10 == 0.:
-	for (x, y) in zip(x_train_array, y_train_array):
+	#for (x, y) in zip(x_train_array, y_train_array):
 		#print(x_train_array)
-		sess.run(optimizer, feed_dict={X: x, Y: y})
+	sess.run(optimizer, feed_dict={X: x_train_array, Y: y_train_array})
 
-
-#testing
-
-#print("Testing... (Mean square loss Comparison)")
-#testing_cost = sess.run(
-#    tf.reduce_sum(tf.pow(pred - Y, 2)) / (2 * x_test_array.shape[0]),
-#    feed_dict={X: x_test_array, Y: y_test_array})  # same function as cost above
-#print("Testing cost=", testing_cost)
-#print("Absolute mean square loss difference:", abs(
-#    training_cost - testing_cost))
 rmse = sess.run(tf.sqrt(tf.reduce_mean(tf.square(error))), feed_dict={X: x_test_array, Y: y_test_array})
 print("RMSE: ", rmse)
-
-#total_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, tf.reduce_mean(y_test_array))))
-
-#unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, pred)))
 
 R2 = sess.run(tf.subtract(1.0, tf.divide(unexplained_error, total_error)), feed_dict={X: x_test_array, Y: y_test_array})
 print("\nR2 : ",R2)

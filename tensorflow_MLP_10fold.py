@@ -8,7 +8,7 @@ from sklearn.model_selection import KFold
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 rng = np.random
-learning_rate = 0.01
+learning_rate = 0.001
 epochs = 50
 display_step = 1
 
@@ -76,7 +76,8 @@ for train, test in kf.split(x_data):
         layer_2 = tf.nn.relu(layer_2)
         # Output layer with linear activation
         out_layer = tf.matmul(layer_2, weights['out']) + biases['out']
-        return out_layer
+        out = tf.sigmoid(out_layer)
+        return out
 
     # Store layers weight & bias
     weights = {
@@ -100,8 +101,11 @@ for train, test in kf.split(x_data):
     unexplained_error = tf.reduce_sum(tf.square(tf.subtract(y_test_array, pred)))
 
     # Define loss and optimizer
+    #cost = tf.reduce_mean(tf.square(Y-pred))
     cost = tf.reduce_mean(tf.square(Y-pred))
+    #cost = tf.reduce_sum(tf.pow(pred-Y, 2))/(2*n_samples)
     #cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(pred, y))
+    #optimizer =  tf.train.GradientDescentOptimizer(learning_rate=learning_rate).minimize(cost)
     optimizer =  tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
 
