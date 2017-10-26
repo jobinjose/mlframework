@@ -31,8 +31,6 @@ R2 :  0.731651008129
 C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP.py
 RMSE:  498548.278957
 R2:  -0.956238874545
-<<<<<<< HEAD
-=======
 
 C:\Users\HP\Documents\GitHub\mlframework>python scikit_MLP_10fold.py
 RMSE:  472204.945794
@@ -63,4 +61,18 @@ C:\Users\meenuneenu\Documents\GitHub\mlframework>spark-submit randomForestMllib_
 RMSE :  179304.92141551437
 
 r2 :  0.7611146550727784
->>>>>>> d1e23f8b68cc53c9d2b8b62afa5f783b51918777
+
+C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_MLP_10fold.py
+RMSE:  648019.25
+
+R2 :  -6844.60732422
+
+C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_MLP.py
+RMSE:  628229.0
+
+R2 :  -20228.1
+
+C:\Users\HP\Documents\GitHub\mlframework>python tensorflow_linear.py
+RMSE:  418793.0
+
+R2 :  -247604.0
