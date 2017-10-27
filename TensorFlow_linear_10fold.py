@@ -34,7 +34,7 @@ m=0
 
 for train, test in kf.split(x_data):
     m+=1
-    print("Iteration : ", i)
+    print("Iteration : ", m)
     x_train_array = np.asarray(x_data.iloc[train].values.tolist())
 
     #print(x_train_array)
