@@ -5,10 +5,10 @@ import numpy as np
 import os
 from dataProcessing_kc_data import dataProcessing_kc_data
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-from config import dataset1,learning_rate,epochs,testsize,hiddenlayer
+from config import dataset1,learning_rate,epochs,testsize,hiddenlayer,learning_rate_MLP_dataset1
 
 rng = np.random
-#learning_rate = 0.001
+learning_rate = learning_rate_MLP_dataset1
 #epochs = 50
 #display_step = 1
 

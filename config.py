@@ -18,4 +18,5 @@ no_of_rows = 100000 #to retrive rows from dataset using pandas
 learning_rate_linear_dataset2 = 0.00000000005
 max_nodes=100 #only for random forest in tensorflow
 
-learning_rate_MLP_dataset2 = 0.01 #learning rate for MLP tensorflow
+learning_rate_MLP_dataset2 = 0.01 #learning rate for MLP tensorflow for dataset 2
+learning_rate_MLP_dataset1 = 0.001#learning rate for MLP tensorflow for dataset 1

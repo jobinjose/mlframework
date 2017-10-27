@@ -6,10 +6,10 @@ import os
 from dataProcessing_kc_data import dataProcessing_kc_data
 from sklearn.model_selection import KFold
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-from config import dataset1, no_of_folds, learning_rate, epochs, hiddenlayer
+from config import dataset1, no_of_folds, learning_rate, epochs, hiddenlayer,learning_rate_MLP_dataset1
 
 rng = np.random
-#learning_rate = 0.001
+learning_rate = learning_rate_MLP_dataset1
 #epochs = 50
 #display_step = 1
 
