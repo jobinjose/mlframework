@@ -8,11 +8,12 @@ from dataProcessing_NYC import dataProcessing_NYC
 from pyspark.ml.evaluation import RegressionEvaluator
 import mllib
 from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
+from config import dataset2, no_of_rows,no_of_folds,maxIter
 
 from pyspark import SparkContext, SparkConf
 
 #import dataset
-NYCData = pd.read_csv("New York City Taxi Trip Duration.csv",nrows = 100000)
+NYCData = pd.read_csv(dataset2,nrows = no_of_rows)
 
 #all the variables except trip_duration is taken as X variables
 x=dataProcessing_NYC(NYCData)
@@ -28,11 +29,11 @@ features=list(filter(lambda w: w not in label, x_new.columns))
 assembler = VectorAssembler(inputCols=features,outputCol="features")
 data_transformed = assembler.transform(x_new)
 
-linearRegressor = LinearRegression(labelCol="trip_duration", featuresCol="features", maxIter=10)
+linearRegressor = LinearRegression(labelCol="trip_duration", featuresCol="features", maxIter=maxIter)
 evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='trip_duration')
 
 paramGrid = ParamGridBuilder().addGrid(linearRegressor.regParam, [0.1, 0.01]).addGrid(linearRegressor.elasticNetParam, [0, 1]).build()
-crossval = CrossValidator(estimator=linearRegressor, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=10)
+crossval = CrossValidator(estimator=linearRegressor, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=no_of_folds)
 
 crossValModel = crossval.fit(data_transformed)
 cvSummary = crossValModel.bestModel.summary

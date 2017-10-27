@@ -5,22 +5,23 @@ import numpy as np
 import os
 from dataProcessing_NYC import dataProcessing_NYC
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+from config import dataset2,learning_rate_MLP_dataset2,epochs,hiddenlayer,no_of_rows,testsize
 
 rng = np.random
-learning_rate = 0.01
-epochs = 50
-display_step = 1
+learning_rate = learning_rate_MLP_dataset2
+#epochs = 50
+#display_step = 1
 
 # Network Parameters
-n_hidden_1 = 10 # 1st layer number of neurons
-n_hidden_2 = 10 # 2nd layer number of neurons
+n_hidden_1 = hiddenlayer # 1st layer number of neurons
+n_hidden_2 = hiddenlayer # 2nd layer number of neurons
 
 #n_input = 263 # number of features
 #n_classes = 1 # one target
 
 sess = tf.Session()
 #Import the data
-data = pd.read_csv('New York City Taxi Trip Duration.csv',nrows = 100000)
+data = pd.read_csv(dataset2,nrows = no_of_rows)
 #print("shape : ",data.shape)
 x_data=dataProcessing_NYC(data)    #dataprocessing
 
@@ -28,7 +29,7 @@ x_data=dataProcessing_NYC(data)    #dataprocessing
 y_data=x_data['trip_duration']
 x_data=x_data.drop(['dropoff_datetime','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude','trip_duration'],axis = 1)
 #Splitting the data int train and test as 70/30
-x_train, x_test, y_train, y_test = train_test_split(x_data, y_data,test_size=.30)
+x_train, x_test, y_train, y_test = train_test_split(x_data, y_data,test_size=testsize)
 
 x_train_array = np.asmatrix(x_train.values.tolist())
 

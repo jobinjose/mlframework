@@ -7,11 +7,12 @@ from pyspark.ml.feature import VectorAssembler
 from dataProcessing_NYC import dataProcessing_NYC
 from pyspark.ml.evaluation import RegressionEvaluator
 import mllib
+from config import dataset2,no_of_rows,trainsize,testsize,maxIter
 
 from pyspark import SparkContext, SparkConf
 
 #import dataset
-NYCData = pd.read_csv("New York City Taxi Trip Duration.csv",nrows = 100000)
+NYCData = pd.read_csv(dataset2,nrows = no_of_rows)
 
 #all the variables except trip_duration is taken as X variables
 x=dataProcessing_NYC(NYCData)
@@ -21,14 +22,14 @@ sc=SparkContext('local','LinearRegressionMllib')
 sqlcontext=SQLContext(sc)
 x_new=sqlcontext.createDataFrame(data=x)
 
-(train_data,test_data) = x_new.randomSplit([0.7,0.3])
+(train_data,test_data) = x_new.randomSplit([trainsize,testsize])
 label='trip_duration'
 features=list(filter(lambda w: w not in label, train_data.columns))
 #print(features)
 assembler = VectorAssembler(inputCols=features,outputCol="features")
 train_data_transformed = assembler.transform(train_data)
 
-linearRegressor = LinearRegression(labelCol="trip_duration", featuresCol="features", maxIter=10)
+linearRegressor = LinearRegression(labelCol="trip_duration", featuresCol="features", maxIter=maxIter)
 linearModel = linearRegressor.fit(train_data_transformed)
 
 test_data_transformed = assembler.transform(test_data)

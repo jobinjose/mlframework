@@ -7,17 +7,18 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn.metrics import accuracy_score
 import numpy as n
+from config import dataset2,no_of_rows,no_of_folds,no_of_trees
 
-no_of_trees = 10
+#no_of_trees = 10
 if __name__=="__main__":
     #import dataset
-    data = p.read_csv("New York City Taxi Trip Duration.csv",nrows = 100000)
+    data = p.read_csv(dataset2,nrows = no_of_rows)
 
     x=dataProcessing_NYC(data)    #dataprocessing
     # Saleprice is assined as target variable
     y=x['trip_duration']
     x=x.drop(['dropoff_datetime','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude','trip_duration'],axis=1)
-    no_of_folds = 10
+    #no_of_folds = 10
 
     # Splitting the dataset into 10 folds
     kf = KFold(n_splits=no_of_folds)

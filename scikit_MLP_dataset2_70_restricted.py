@@ -7,13 +7,14 @@ from sklearn import datasets
 import numpy as np
 from sklearn.metrics import mean_squared_error, r2_score
 from dataProcessing_NYC import dataProcessing_NYC
+from config import dataset2,no_of_rows,hiddenlayersizes,testsize
 
 #input parameters
 #number of hidden layers in th perceptron
-hiddenlayersizes = 30,30,30
+#hiddenlayersizes = 30,30,30
 
 #Import the data
-data = pd.read_csv('New York City Taxi Trip Duration.csv',nrows = 100000)
+data = pd.read_csv(dataset2,nrows = no_of_rows)
 x=dataProcessing_NYC(data)    #dataprocessing
 
 #set the dependent variable which is saleprice
@@ -21,7 +22,7 @@ y=x['trip_duration']
 x=x.drop(['dropoff_datetime','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude','trip_duration'],axis = 1)
 
 #split the data into 70:30 (train:test)
-x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=.30)
+x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=testsize)
 
 #multi layer perceptron
 mlp = MLPRegressor(hidden_layer_sizes=(hiddenlayersizes))

@@ -5,16 +5,17 @@ import numpy as np
 import os
 from dataProcessing_NYC import dataProcessing_NYC
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+from config import dataset2,learning_rate_linear_dataset2,epochs,no_of_rows,no_of_folds
 
 rng = np.random
-learning_rate = 0.00000000005
-epochs = 50
-display_step = 50
-no_of_folds = 10
+learning_rate = learning_rate_linear_dataset2
+#epochs = 50
+#display_step = 50
+#no_of_folds = 10
 sess = tf.Session()
 
 #Import the data
-data = pd.read_csv('New York City Taxi Trip Duration.csv',nrows = 100000)
+data = pd.read_csv(dataset2,nrows = no_of_rows)
 x_data=dataProcessing_NYC(data)    #dataprocessing
 
 #set the dependent variable which is saleprice

@@ -7,11 +7,12 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn.metrics import accuracy_score
 import numpy as np
+from config import dataset2,no_of_trees,no_of_rows,testsize
 
-no_of_trees = 10
+#no_of_trees = 10
 if __name__=="__main__":
     #import dataset
-    data = p.read_csv("New York City Taxi Trip Duration.csv",nrows = 100000)
+    data = p.read_csv(dataset2,nrows = no_of_rows)
     #print(houseData.head())
     x=dataProcessing_NYC(data)    #dataprocessing
     # Saleprice is assined as target variable
@@ -21,7 +22,7 @@ if __name__=="__main__":
     #print(y)
 
     # Splitting the dataset into training set(70%) and test set (30%)
-    x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)
+    x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=testsize)
     #print(x_train) #1022 rows
     #print(x_test) #438 rows
 

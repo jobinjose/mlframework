@@ -7,16 +7,17 @@ from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 from dataProcessing_NYC import dataProcessing_NYC
+from config import dataset2, no_of_rows,testsize
 
 #Import the data
-data = pd.read_csv('New York City Taxi Trip Duration.csv',nrows = 100000)
+data = pd.read_csv(dataset2,nrows = no_of_rows)
 x=dataProcessing_NYC(data)    #dataprocessing
 
 #set the dependent variable which is saleprice
 y=x['trip_duration']
 x=x.drop(['dropoff_datetime','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude','trip_duration'],axis = 1)
 
-x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=.30)
+x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=testsize)
 
 #linear regression object creation
 linear_reg = linear_model.LinearRegression()

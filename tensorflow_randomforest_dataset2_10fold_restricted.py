@@ -9,23 +9,24 @@ from sklearn.model_selection import KFold
 from tensorflow.contrib.learn.python.learn import metric_spec
 from tensorflow.contrib.tensor_forest.client import eval_metrics
 import os
+from config import dataset2,no_of_rows,no_of_folds,no_of_trees,max_nodes
 #from tf.metrics import mean_squared_error
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.logging.set_verbosity(tf.logging.ERROR)
 #read data directly with tf
 
-no_of_trees = 10
+#no_of_trees = 10
 
 if __name__=="__main__":
     #Import the data
-    data = p.read_csv('New York City Taxi Trip Duration.csv',nrows = 100000)
+    data = p.read_csv(dataset2,nrows = no_of_rows)
     x=dataProcessing_NYC(data)    #dataprocessing
 
     #set the dependent variable which is saleprice
     y=x['trip_duration']
     x=x.drop(['dropoff_datetime','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude','trip_duration'],axis = 1)
 
-    no_of_folds = 10
+    #no_of_folds = 10
 
     kf = KFold(n_splits=no_of_folds)
     kf.get_n_splits(x)
@@ -49,7 +50,7 @@ if __name__=="__main__":
         sess = tf.Session()
         #building an estimator
         number_features = 1460
-        RForestParams=tensor_forest.ForestHParams(num_classes=1, num_features=number_features, regression=True, num_trees=no_of_trees, max_nodes=100)
+        RForestParams=tensor_forest.ForestHParams(num_classes=1, num_features=number_features, regression=True, num_trees=no_of_trees, max_nodes=max_nodes)
         regressor = estimator.SKCompat(random_forest.TensorForestEstimator(RForestParams))
         #regressor = random_forest.TensorForestEstimator(RForestParams)
         regressor.fit(x=x_train,y=y_train)

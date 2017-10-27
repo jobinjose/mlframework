@@ -10,11 +10,12 @@ from pyspark.sql import SQLContext
 from pyspark.context import SparkContext
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
+from config import dataset2, no_of_rows,trainsize,testsize,no_of_trees
 
-no_of_trees = 10
+#no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
-    NYCData = p.read_csv("New York City Taxi Trip Duration.csv",nrows = 100000)
+    NYCData = p.read_csv(dataset2,nrows = no_of_rows)
 
     #all the variables except trip_duration is taken as X variables
     x=dataProcessing_NYC(NYCData)
@@ -25,7 +26,7 @@ if __name__=="__main__":
 
     # Splitting the dataset into training set(70%) and test set (30%)
     #x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)
-    (train_data,test_data) = x_new.randomSplit([0.7,0.3])
+    (train_data,test_data) = x_new.randomSplit([trainsize,testsize])
     label='trip_duration'
     features=list(filter(lambda w: w not in label, train_data.columns))
     #print(features)

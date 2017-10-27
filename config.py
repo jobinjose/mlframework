@@ -1,4 +1,5 @@
 dataset1 = "Datasets/kc_house_data.csv"
+dataset2 = "Datasets/New York City Taxi Trip Duration.csv"
 
 #task2
 
@@ -12,3 +13,9 @@ hiddenlayer = 10 #MLP tensorflow
 
 maxIter=10 #for mllib framework
 hiddenlayersizes = 30,30,30 #MLP scikit
+no_of_rows = 100000 #to retrive rows from dataset using pandas
+
+learning_rate_linear_dataset2 = 0.00000000005
+max_nodes=100 #only for random forest in tensorflow
+
+learning_rate_MLP_dataset2 = 0.01 #learning rate for MLP tensorflow

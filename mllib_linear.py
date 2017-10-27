@@ -39,7 +39,7 @@ features=list(filter(lambda w: w not in label, train_data.columns))
 assembler = VectorAssembler(inputCols=features,outputCol="features")
 train_data_transformed = assembler.transform(train_data)
 
-linearRegressor = LinearRegression(labelCol="price", featuresCol="features", maxIter)
+linearRegressor = LinearRegression(labelCol="price", featuresCol="features", maxIter=maxIter)
 linearModel = linearRegressor.fit(train_data_transformed)
 
 test_data_transformed = assembler.transform(test_data)

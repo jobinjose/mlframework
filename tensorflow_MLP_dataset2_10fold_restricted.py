@@ -6,24 +6,25 @@ import os
 from dataProcessing_NYC import dataProcessing_NYC
 from sklearn.model_selection import KFold
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+from config import dataset2,learning_rate_MLP_dataset2,epochs,hiddenlayer,no_of_rows,no_of_folds
 
 rng = np.random
-learning_rate = 0.01
-epochs = 50
-display_step = 1
+learning_rate = learning_rate_MLP_dataset2
+#epochs = 50
+#display_step = 1
 
 # Network Parameters
-n_hidden_1 = 10 # 1st layer number of neurons
-n_hidden_2 = 10 # 2nd layer number of neurons
+n_hidden_1 = hiddenlayer # 1st layer number of neurons
+n_hidden_2 = hiddenlayer # 2nd layer number of neurons
 
-no_of_folds = 10
+#no_of_folds = 10
 
 #n_input = 263 # number of features
 #n_classes = 1 # one target
 
 sess = tf.Session()
 #Import the data
-data = pd.read_csv('New York City Taxi Trip Duration.csv',nrows = 100000)
+data = pd.read_csv(dataset2,nrows = no_of_rows)
 x_data=dataProcessing_NYC(data)    #dataprocessing
 
 #set the dependent variable which is saleprice

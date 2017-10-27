@@ -7,9 +7,10 @@ from sklearn import datasets, linear_model
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error, r2_score
 from dataProcessing_NYC import dataProcessing_NYC
+from config import dataset2,no_of_folds,no_of_rows
 
 #Import the data
-data = pd.read_csv('New York City Taxi Trip Duration.csv', nrows = 100000)
+data = pd.read_csv(dataset2, nrows = no_of_rows)
 x=dataProcessing_NYC(data)    #dataprocessing
 
 #set the dependent variable which is saleprice
@@ -17,7 +18,7 @@ y=x['trip_duration']
 x=x.drop(['dropoff_datetime','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude','trip_duration'],axis = 1)
 
 #linear regression object creation
-no_of_folds = 10
+#no_of_folds = 10
 kf = KFold(n_splits=no_of_folds)
 kf.get_n_splits(x)
 xval_err = 0

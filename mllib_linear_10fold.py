@@ -40,7 +40,7 @@ features=list(filter(lambda w: w not in label, x_new.columns))
 assembler = VectorAssembler(inputCols=features,outputCol="features")
 data_transformed = assembler.transform(x_new)
 
-linearRegressor = LinearRegression(labelCol="price", featuresCol="features", maxIter)
+linearRegressor = LinearRegression(labelCol="price", featuresCol="features", maxIter=maxIter)
 evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='price')
 
 paramGrid = ParamGridBuilder().addGrid(linearRegressor.regParam, [0.1, 0.01]).addGrid(linearRegressor.elasticNetParam, [0, 1]).build()
