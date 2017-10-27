@@ -7,15 +7,19 @@ from sklearn import datasets, linear_model
 from sklearn.model_selection import KFold
 from dataProcessing_sum import dataProcessing_sum_without_noise
 from sklearn.metrics import r2_score, mean_squared_error
+from config_task1 import n_splits
+from config_task1 import chunk_start_size
+from config_task1 import dataset3
 
-n_splits = 10
+#n_splits = 10
+chunk_split_start_loop_size = chunk_start_size
 
 #Import the data
-dataset = pd.read_csv("The SUM dataset, without noise.csv",delimiter=";")
+dataset = pd.read_csv(dataset3,delimiter=";")
 #get the x by droping the dependent variable
 dataset=dataset.drop(['Target Class'],axis=1)
 data=dataProcessing_sum_without_noise(dataset)    #dataprocessing
-chunk_split_start_loop_size = 100
+#chunk_split_start_loop_size = 100
 flag=1
 while chunk_split_start_loop_size <= data.shape[0]:
     x=data.head(chunk_split_start_loop_size)
