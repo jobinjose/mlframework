@@ -9,16 +9,17 @@ from sklearn.model_selection import KFold
 from tensorflow.contrib.learn.python.learn import metric_spec
 from tensorflow.contrib.tensor_forest.client import eval_metrics
 import os
+from config import dataset1,no_of_trees,no_of_folds
 #from tf.metrics import mean_squared_error
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.logging.set_verbosity(tf.logging.ERROR)
 #read data directly with tf
 
-no_of_trees = 10
+#no_of_trees = 10
 
 if __name__=="__main__":
     #import dataset
-    houseData = p.read_csv("kc_house_data.csv")
+    houseData = p.read_csv(dataset1)
 
     #all the variables except SalePrice is taken as X variables
     #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
@@ -27,7 +28,7 @@ if __name__=="__main__":
     y=x['price']
     x=x.drop(['price'],axis=1)
 
-    no_of_folds = 10
+    #no_of_folds = 10
 
     kf = KFold(n_splits=no_of_folds)
     kf.get_n_splits(x)

@@ -8,9 +8,10 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import cohen_kappa_score
 import numpy as np
+from config import testsize
 
 
-testsize = 0.30
+#testsize = 0.30
 
 if __name__=="__main__":
     #import dataset

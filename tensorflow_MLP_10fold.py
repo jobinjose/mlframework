@@ -6,24 +6,25 @@ import os
 from dataProcessing_kc_data import dataProcessing_kc_data
 from sklearn.model_selection import KFold
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+from config import dataset1, no_of_folds, learning_rate, epochs, hiddenlayer
 
 rng = np.random
-learning_rate = 0.001
-epochs = 50
-display_step = 1
+#learning_rate = 0.001
+#epochs = 50
+#display_step = 1
 
 # Network Parameters
-n_hidden_1 = 10 # 1st layer number of neurons
-n_hidden_2 = 10 # 2nd layer number of neurons
+n_hidden_1 = hiddenlayer # 1st layer number of neurons
+n_hidden_2 = hiddenlayer # 2nd layer number of neurons
 
-no_of_folds = 10
+#no_of_folds = 10
 
 #n_input = 263 # number of features
 #n_classes = 1 # one target
 
 sess = tf.Session()
 #Import the data
-data = pd.read_csv('kc_house_data.csv')
+data = pd.read_csv(dataset1)
 #get the x by droping the dependent variable
 #x_data=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
 x_data=dataProcessing_kc_data(data)    #dataprocessing

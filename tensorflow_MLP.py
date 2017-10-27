@@ -5,22 +5,23 @@ import numpy as np
 import os
 from dataProcessing_kc_data import dataProcessing_kc_data
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+from config import dataset1,learning_rate,epochs,testsize,hiddenlayer
 
 rng = np.random
-learning_rate = 0.001
-epochs = 50
-display_step = 1
+#learning_rate = 0.001
+#epochs = 50
+#display_step = 1
 
 # Network Parameters
-n_hidden_1 = 10 # 1st layer number of neurons
-n_hidden_2 = 10 # 2nd layer number of neurons
+n_hidden_1 = hiddenlayer # 1st layer number of neurons
+n_hidden_2 = hiddenlayer # 2nd layer number of neurons
 
 #n_input = 263 # number of features
 #n_classes = 1 # one target
 
 sess = tf.Session()
 #Import the data
-data = pd.read_csv('kc_house_data.csv')
+data = pd.read_csv(dataset1)
 #get the x by droping the dependent variable
 #x_data=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
 x_data=dataProcessing_kc_data(data)    #dataprocessing
@@ -29,7 +30,7 @@ x_data=dataProcessing_kc_data(data)    #dataprocessing
 y_data=x_data['price']
 x_data=x_data.drop(['price'],axis = 1)
 #Splitting the data int train and test as 70/30
-x_train, x_test, y_train, y_test = train_test_split(x_data, y_data,test_size=.30)
+x_train, x_test, y_train, y_test = train_test_split(x_data, y_data,test_size=testsize)
 
 x_train_array = np.asmatrix(x_train.values.tolist())
 

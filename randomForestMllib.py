@@ -10,11 +10,12 @@ from pyspark.sql import SQLContext
 from pyspark.context import SparkContext
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
+from config import dataset1,testsize,trainsize,no_of_trees
 
-no_of_trees = 10
+#no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
-    houseData = p.read_csv("kc_house_data.csv")
+    houseData = p.read_csv(dataset1)
 
     #all the variables except SalePrice is taken as X variables
     #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
@@ -28,7 +29,7 @@ if __name__=="__main__":
 
     # Splitting the dataset into training set(70%) and test set (30%)
     #x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)
-    (train_data,test_data) = x_new.randomSplit([0.7,0.3])
+    (train_data,test_data) = x_new.randomSplit([trainsize,testsize])
     label='price'
     features=list(filter(lambda w: w not in label, train_data.columns))
     #print(features)

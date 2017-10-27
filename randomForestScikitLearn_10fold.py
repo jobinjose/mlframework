@@ -7,11 +7,12 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn.metrics import accuracy_score
 import numpy as n
+from config import dataset1,no_of_trees,no_of_folds
 
-no_of_trees = 10
+#no_of_trees = 10
 if __name__=="__main__":
     #import dataset
-    houseData = p.read_csv("kc_house_data.csv")
+    houseData = p.read_csv(dataset1)
 
     #all the variables except SalePrice is taken as X variables
     #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
@@ -19,7 +20,7 @@ if __name__=="__main__":
     # Saleprice is assined as target variable
     y=x['price']
     x=x.drop(['price'],axis=1)
-    no_of_folds = 10
+    #no_of_folds = 10
 
     # Splitting the dataset into 10 folds
     kf = KFold(n_splits=no_of_folds)

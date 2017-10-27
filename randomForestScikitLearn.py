@@ -7,11 +7,12 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn.metrics import accuracy_score
 import numpy as np
+from config import dataset1,no_of_trees,testsize
 
-no_of_trees = 10
+#no_of_trees = 10
 if __name__=="__main__":
     #import dataset
-    houseData = p.read_csv("kc_house_data.csv")
+    houseData = p.read_csv(dataset1)
     #print(houseData.head())
 
     #all the variables except SalePrice is taken as X variables
@@ -24,7 +25,7 @@ if __name__=="__main__":
     #print(y)
 
     # Splitting the dataset into training set(70%) and test set (30%)
-    x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.30)
+    x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=testsize)
     #print(x_train) #1022 rows
     #print(x_test) #438 rows
 
@@ -35,16 +36,6 @@ if __name__=="__main__":
 
     # testing
     y_result = RFRegressor.predict(x_test)
-
-    #RMSE Calsulation
-    #e=y_result - y_test
-    #xval_err =np.dot(e,e)
-    #rmse_10cv = np.sqrt(xval_err/len(x))
-    #print("RMSE: %.2f" %rmse_10cv)
-    #y_test['result'] = y_result
-    #print(y_result)
-
-    #print(y_test)
 
     #Calculating RMSE
     RMSE = np.sqrt(mean_squared_error(y_test,y_result))

@@ -7,9 +7,10 @@ from sklearn.neural_network import MLPClassifier
 from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 from dataProcessing_kc_data import dataProcessing_kc_data
+from config import dataset1, testsize
 
 #Import the data
-data = pd.read_csv('kc_house_data.csv')
+data = pd.read_csv(dataset1)
 #get the x by droping the dependent variable
 #x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
 x=dataProcessing_kc_data(data)    #dataprocessing
@@ -18,7 +19,7 @@ x=dataProcessing_kc_data(data)    #dataprocessing
 y=x['price']
 x=x.drop(['price'],axis = 1)
 
-x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=.30)
+x_train, x_test, y_train, y_test = train_test_split(x, y,test_size=testsize)
 
 #linear regression object creation
 linear_reg = linear_model.LinearRegression()

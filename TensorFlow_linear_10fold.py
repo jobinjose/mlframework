@@ -5,22 +5,17 @@ import numpy as np
 import os
 from dataProcessing_kc_data import dataProcessing_kc_data
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+from config import dataset1,learning_rate,epochs, no_of_folds
 
 rng = np.random
-learning_rate = 0.0000000000000005e-5
-epochs = 50
-display_step = 50
-no_of_folds = 10
+#learning_rate = 0.0000000000000005e-5
+#epochs = 50
+#display_step = 50
+#no_of_folds = 10
 sess = tf.Session()
-#def calc(x, y):
-
- #   predictions = tf.add(b, tf.matmul(tf.cast(x, tf.float64), w))
-  #  error = tf.reduce_mean(tf.square(y - predictions))
-   # return [ predictions, error ]
-
 
 #Import the data
-data = pd.read_csv('kc_house_data.csv')
+data = pd.read_csv(dataset1)
 #get the x by droping the dependent variable
 #x_data=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
 x_data=dataProcessing_kc_data(data)    #dataprocessing

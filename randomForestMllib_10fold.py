@@ -11,11 +11,11 @@ from pyspark.context import SparkContext
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
-
-no_of_trees = 10
+from config import dataset1,no_of_folds,no_of_trees
+#no_of_trees = 10
 if __name__=="__main__":
 	#import dataset
-    houseData = p.read_csv("kc_house_data.csv")
+    houseData = p.read_csv(dataset1)
 
     #all the variables except SalePrice is taken as X variables
     #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
@@ -41,8 +41,8 @@ if __name__=="__main__":
     evaluator_r2 = RegressionEvaluator(labelCol="price", predictionCol="prediction",metricName="r2")
 
     paramGrid = ParamGridBuilder().build()
-    crossval = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator_rmse, numFolds=10)
-    crossval_r2 = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator_r2, numFolds=10)
+    crossval = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator_rmse, numFolds=no_of_folds)
+    crossval_r2 = CrossValidator(estimator=regressor, estimatorParamMaps=paramGrid, evaluator=evaluator_r2, numFolds=no_of_folds)
 
     crossValModel = crossval.fit(data_transformed)
     #cvSummary = crossValModel.getParam()

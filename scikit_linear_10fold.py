@@ -7,9 +7,11 @@ from sklearn import datasets, linear_model
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error, r2_score
 from dataProcessing_kc_data import dataProcessing_kc_data
+from config import dataset1,no_of_folds
+
 
 #Import the data
-data = pd.read_csv('kc_house_data.csv')
+data = pd.read_csv(dataset1)
 #get the x by droping the dependent variable
 #x=data.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis = 1)
 x=dataProcessing_kc_data(data)    #dataprocessing
@@ -19,7 +21,7 @@ y=x['price']
 x=x.drop(['price'],axis = 1)
 
 #linear regression object creation
-no_of_folds = 10
+#no_of_folds = 10
 kf = KFold(n_splits=no_of_folds)
 kf.get_n_splits(x)
 xval_err = 0
@@ -43,11 +45,3 @@ for train,test in kf.split(x):
 # Metrics
 print("RMSE : " , sum(RMSE)/no_of_folds)
 print("\nR2 : ", sum(R2)/no_of_folds)
-#Coefficient
-#print('Coefficients: \n', linear_reg.coef_)
-# The mean squared error
-#print("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
-# Explained variance score: 1 is perfect prediction
-#print('Variance score: %.2f' % r2_score(y_test, y_pred))
-
-#print("RMSE on 10 fold: %.2f" %rmse_10cv)

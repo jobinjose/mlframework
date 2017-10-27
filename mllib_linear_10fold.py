@@ -14,11 +14,12 @@ from dataProcessing_kc_data import dataProcessing_kc_data
 from pyspark.ml.evaluation import RegressionEvaluator
 import mllib
 from pyspark.ml.tuning import ParamGridBuilder,CrossValidator
+from config import dataset1,no_of_folds,maxIter
 
 from pyspark import SparkContext, SparkConf
 
 #import dataset
-houseData = pd.read_csv("kc_house_data.csv")
+houseData = pd.read_csv(dataset1)
 
 #all the variables except SalePrice is taken as X variables
 #x=houseData.drop(['Alley','PoolQC','MiscFeature','Fence','FireplaceQu','HouseStyle'],axis=1)
@@ -39,11 +40,11 @@ features=list(filter(lambda w: w not in label, x_new.columns))
 assembler = VectorAssembler(inputCols=features,outputCol="features")
 data_transformed = assembler.transform(x_new)
 
-linearRegressor = LinearRegression(labelCol="price", featuresCol="features", maxIter=10)
+linearRegressor = LinearRegression(labelCol="price", featuresCol="features", maxIter)
 evaluator = RegressionEvaluator(predictionCol='prediction', labelCol='price')
 
 paramGrid = ParamGridBuilder().addGrid(linearRegressor.regParam, [0.1, 0.01]).addGrid(linearRegressor.elasticNetParam, [0, 1]).build()
-crossval = CrossValidator(estimator=linearRegressor, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds=10)
+crossval = CrossValidator(estimator=linearRegressor, estimatorParamMaps=paramGrid, evaluator=evaluator, numFolds = no_of_folds)
 
 crossValModel = crossval.fit(data_transformed)
 #linearModel = linearRegressor.fit(train_data_transformed)
