@@ -7,17 +7,22 @@ from sklearn.metrics import mean_squared_error
 #from sklearn.metrics import accuracy_score
 import numpy as n
 from sklearn.metrics import r2_score
+from config_task1 import n_splits
+from config_task1 import chunk_start_size
+from config_task1 import dataset2
+from config_task1 import no_of_trees
 
-n_splits = 10
-no_of_trees = 10
+#n_splits = 10
+#no_of_trees = 10
+chunk_split_start_loop_size = chunk_start_size
 if __name__=="__main__":
     #import dataset
-    dataset = p.read_csv("The SUM dataset, with noise.csv",delimiter=";")
+    dataset = p.read_csv(dataset2,delimiter=";")
 
     #all the variables except SalePrice is taken as X variables
     dataset=dataset.drop(['Noisy Target Class'],axis = 1)
     data=dataProcessing_sum_noise(dataset)    #dataprocessing
-    chunk_split_start_loop_size = 100
+    #chunk_split_start_loop_size = 100
     flag=1
     while chunk_split_start_loop_size <= data.shape[0]:
         x=data.head(chunk_split_start_loop_size)

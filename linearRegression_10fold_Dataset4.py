@@ -7,15 +7,19 @@ from sklearn import datasets, linear_model
 from sklearn.model_selection import KFold
 from dataProcessing_NYC import dataProcessing_NYC
 from sklearn.metrics import r2_score, mean_squared_error
+from config_task1 import n_splits
+from config_task1 import chunk_start_size
+from config_task1 import dataset4
 
-n_splits = 10
+#n_splits = 10
+chunk_split_start_loop_size = chunk_start_size
 
 #Import the data
-dataset = pd.read_csv("New York City Taxi Trip Duration.csv")
+dataset = pd.read_csv(dataset4)
 #get the x by droping the dependent variable
 data=dataProcessing_NYC(dataset)    #dataprocessing
 data=data.drop(['dropoff_datetime','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude'],axis = 1)
-chunk_split_start_loop_size = 100
+#chunk_split_start_loop_size = 100
 flag=1
 while chunk_split_start_loop_size <= data.shape[0]:
     x=data.head(chunk_split_start_loop_size)

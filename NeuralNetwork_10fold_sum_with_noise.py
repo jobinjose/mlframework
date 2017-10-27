@@ -9,21 +9,27 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import cohen_kappa_score
 import numpy as np
 from sklearn.model_selection import KFold
+from config_task1 import n_splits
+from config_task1 import chunk_start_size
+from config_task1 import dataset2
+from config_task1 import hiddenlayersizes
+from config_task1 import max_iter
 
-n_splits = 10
+#n_splits = 10
 #number of hidden layers in th perceptron
-hiddenlayersizes = 20,20,20
-max_iter = 500
+#hiddenlayersizes = 20,20,20
+#max_iter = 500
+chunk_split_start_loop_size = chunk_start_size
 
 if __name__=="__main__":
     #import dataset
-    dataset = p.read_csv("The SUM dataset, with noise.csv",delimiter=";")
+    dataset = p.read_csv(dataset2,delimiter=";")
     dataset=dataset.drop(['Noisy Target'],axis = 1)
     #print(houseData.head())
 
     #all the variables except SalePrice is taken as X variables
     data=dataProcessing_sum_noise(dataset)    #dataprocessing
-    chunk_split_start_loop_size = 100
+    #chunk_split_start_loop_size = 100
     flag=1
     while chunk_split_start_loop_size <= data.shape[0]:
         x=data.head(chunk_split_start_loop_size)
